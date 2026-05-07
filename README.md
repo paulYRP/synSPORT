@@ -1,12 +1,6 @@
-# Syn Sport Synthetic Data Pipeline
+# synSPORT
 
-This project generates and evaluates synthetic tabular sport sessions from:
-
-```text
-data/tabular.csv
-```
-
-The pipeline preserves participant-level fields such as athlete identity, age,
+This pipeline generates and evaluates synthetic tabular sport sessions from a tabular data. The pipeline preserves participant-level fields such as athlete identity, age,
 gender, sport type, and training experience, then generates repeated synthetic
 session records for each participant. Results are saved as CSV metrics,
 synthetic sessions, plots, logs, and a local dashboard.
