@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Runtime outputs
+logs/
+results/
+output.log
+*.log
+
+# Large/generated model artifacts
+models/tabsyn/tabsyn/vae/ckpt/
+models/tabsyn/ckpt/
+models/tabsyn/synthetic/
+models/tabsyn/data/sport/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

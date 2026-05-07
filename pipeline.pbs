@@ -1,0 +1,45 @@
+#!/bin/bash -l
+#PBS -N synSPORT
+#PBS -q cpu_batch_exec
+#PBS -l select=1:ncpus=32:mem=128gb
+#PBS -l walltime=120:00:00
+#PBS -o output.log
+#PBS -j oe
+
+set -euo pipefail
+
+cd "$PBS_O_WORKDIR"
+
+module load GCCcore/13.2.0
+module load Python/3.11.5
+
+export PYTHON_BIN="${PYTHON_BIN:-python}"
+export SIMULATION_MODE="${SIMULATION_MODE:-full}"
+export MODELS="${MODELS:-ctgan,dpctgan,pategan,tabsyn,sdv_gaussian,sdv_tvae,sdv_par,realtabformer}"
+export SAMPLE_ROWS="${SAMPLE_ROWS:-0}"
+export SESSIONS_PER_PERSON="${SESSIONS_PER_PERSON:-300}"
+export N_RUNS="${N_RUNS:-10}"
+export STEPS="${STEPS:-5}"
+export START_EPOCHS="${START_EPOCHS:-100}"
+export EPOCH_STEP="${EPOCH_STEP:-100}"
+export BATCH_SIZE="${BATCH_SIZE:-128}"
+export TABSYN_STEPS="${TABSYN_STEPS:-200}"
+export MAX_WORKERS="${MAX_WORKERS:-8}"
+export WORKER_THREADS="${WORKER_THREADS:-4}"
+export EPSILON="${EPSILON:-8.0}"
+export DELTA="${DELTA:-1e-5}"
+export DP_EPSILON="${DP_EPSILON:-8.0}"
+export DP_DELTA="${DP_DELTA:-1e-5}"
+export PATE_EPSILON="${PATE_EPSILON:-8.0}"
+export PATE_DELTA="${PATE_DELTA:-1e-5}"
+export LATENT_DIM="${LATENT_DIM:-128}"
+export TEACHER_ITERS="${TEACHER_ITERS:-25}"
+export STUDENT_ITERS="${STUDENT_ITERS:-10}"
+export OUTPUT_DIR="${OUTPUT_DIR:-results/simulation}"
+export DASHBOARD_RESULTS_DIR="${DASHBOARD_RESULTS_DIR:-results/test}"
+export CLEAN_OUTPUT="${CLEAN_OUTPUT:-1}"
+export MERGE_AFTER_RUN="${MERGE_AFTER_RUN:-1}"
+export TARGET="${TARGET:-Training_Outcome}"
+export TASK="${TASK:-classification}"
+
+bash run_simulation.sh
