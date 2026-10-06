@@ -63,21 +63,21 @@
 <path d="M-102-62Q-50-80 0-49L0 50Q-50 21-103 43Z" fill="url(#paper)" stroke="#bdc8c5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M0-49Q50-80 102-62L103 43Q50 21 0 50Z" fill="#fbfcf8" stroke="#bdc8c5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 -41Q-43 -54-13 -36" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 -36Q43 -5486 -41" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -36Q43 -54 86 -41" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 -31Q-43 -44-13 -26" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 -26Q43 -4486 -31" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -26Q43 -44 86 -31" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 -21Q-43 -34-13 -16" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 -16Q43 -3486 -21" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -16Q43 -34 86 -21" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 -11Q-43 -24-13 -6" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 -6Q43 -2486 -11" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -6Q43 -24 86 -11" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 -1Q-43 -14-13 4" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 4Q43 -1486 -1" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 4Q43 -14 86 -1" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 9Q-43 -4-13 14" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 14Q43 -486 9" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 14Q43 -4 86 9" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 19Q-43 6-13 24" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 24Q43 686 19" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 24Q43 6 86 19" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M-86 29Q-43 16-13 34" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
-<path d="M13 34Q43 1686 29" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 34Q43 16 86 29" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
 <path d="M2-44L6 42L16 36L20 44L16-50Z" fill="#a9c5b7" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
 </g>
 <text x="330" y="1100" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#AF7D34" text-anchor="start"><tspan x="330" dy="0">Domain knowledge</tspan></text><path d="M721 365L753 365L753 1090L721 1090" fill="none" stroke="#81949E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M721 725L753 725" fill="none" stroke="#81949E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M753 565L835 565" fill="none" stroke="#81949E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" /><text x="1200" y="220" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#348D84" text-anchor="middle"><tspan x="1200" dy="0">New athlete records</tspan></text><g transform="translate(930 305) scale(0.92)">

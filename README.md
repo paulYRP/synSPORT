@@ -2,7 +2,7 @@
 
 Synthetic data generation applied to sport. The website connects the sport framework to a defined judo question: estimating next-day body mass after official weigh-in.
 
-The initial release contains **Framework** and **Objective**. It presents a scroll narrative and complete chapters with citations, equations, figures and readable R code. It describes the research approach; the conceptual graphics do not contain fitted predictions.
+The initial release contains **Framework** and **Objective**. Scrolling moves through their original diagrams: first the whole figure, then the relevant panels, and finally the connected view. The explanation changes with the camera and follows the same path when scrolling back. Complete chapters retain citations, equations, figures and readable R code.
 
 ## Run locally
 
@@ -36,7 +36,7 @@ npm run check:build
 npm test
 ```
 
-The tests cover desktop, mobile and reduced motion. They check loading, scroll access, navigation, reading panels, appearance, keyboard dismissal and browser errors. Failed checks retain screenshots and traces in ignored test-output folders.
+The tests cover desktop, mobile and reduced motion. They check the exact introduction, original diagram geometry, synchronized captions, forward and reverse camera movement, navigation, reading panels, appearance, keyboard dismissal and browser errors. Failed checks retain screenshots and traces in ignored test-output folders.
 
 ## Source content
 
@@ -44,8 +44,10 @@ The tests cover desktop, mobile and reduced motion. They check loading, scroll a
 
 | Location | Purpose |
 | --- | --- |
-| `index.html` | The connected narrative and its visual scenes. |
+| `index.html` | Opening, synSPORT introduction, navigation and reading panel. |
 | `src/` | Opening, scrolling, navigation, reading panels and appearance. |
+| `src/diagram-stage.js` | Scroll-controlled camera, source-figure loading and accessible static layouts. |
+| `content/diagram-scenes.js` | Framework and Objective narration, figure coordinates and mobile detail views. |
 | `content/chapters.json` | Prepared full chapters and source hashes. |
 | `public/chapters/` | Standalone chapters for reading and sharing. |
 | `public/figures/` | Final Framework and Objective diagrams. |
@@ -70,7 +72,7 @@ npm run check:build
 npm test
 ```
 
-The publication script reads the workbooks only for aggregate counts and measurement definitions. It does not execute R, save a workbook or publish raw athlete rows. It preserves chapter text, citations, mathematics and code while recording source checksums. Review any corresponding narrative changes in `index.html` when the scientific objective changes.
+The publication script reads the workbooks only for aggregate counts and measurement definitions. It does not execute R, save a workbook or publish raw athlete rows. It preserves chapter text, citations, mathematics and code while recording source checksums. Review the narration and camera coordinates in `content/diagram-scenes.js` whenever a source diagram or the scientific objective changes.
 
 ## Publish
 
@@ -91,18 +93,19 @@ Live address: **https://paulyrp.github.io/synSPORT/**
 | Action | What to verify |
 | --- | --- |
 | Open the live address in a new tab. | The loading belt gives way to the judoka. Scrolling reveals synSPORT. |
-| Scroll forward and backward. | The recorded movement and chapter visuals follow the direction of travel. |
+| Scroll forward and backward. | The recorded movement follows the scroll. Each chapter moves from its complete diagram into the relevant panels and returns to the overview. |
+| Pause within Framework and Objective. | The current explanation matches the visible panel. Scrolling back restores earlier views. |
 | Open the menu. | Home, Framework and Objective reach their sections. Escape closes the menu. |
 | Read each full chapter. | Figures, equations, references and code are readable. Closing returns to the narrative. |
 | Open `#objective` directly and refresh. | The Objective section is accessible through a shared link. |
-| Follow a chapter citation or open a diagram. | The reference is found and the diagram can be inspected at full size. |
+| Use View complete diagram or follow a chapter citation. | The original figure opens without losing the narrative position; chapter citations reach their references. |
 | Use a phone or reduced-motion setting. | The same scientific sequence remains readable. |
 | Switch appearance. | Light and dark modes remain legible and the choice persists. |
 | Inspect Actions and the page footer. | The deployed revision matches the successful workflow commit. |
 
 ## Design basis
 
-The interaction uses an overview, a focused explanation and a connection to the next question. It is informed by [ScrollyVis (Mörth et al., 2023)](https://doi.org/10.1109/TVCG.2022.3205769). Direct navigation, complete reading pages and reduced-motion layouts address the usability concerns examined by [Mittenentzwei et al. (2023)](https://doi.org/10.1016/j.cag.2023.06.011). Repeatable build and test checks follow the continuous-integration approach reviewed by [Soares et al. (2022)](https://doi.org/10.1007/s10664-021-10114-1).
+The interaction uses an overview, a focused explanation and a connection to the next question. It is informed by [ScrollyVis (Mörth et al., 2023)](https://doi.org/10.1109/TVCG.2022.3205769). The source diagram remains in view while the camera moves between panels. Mobile scenes use smaller, named areas of the same figure. Direct navigation, complete reading pages and reduced-motion layouts address the usability concerns examined by [Mittenentzwei et al. (2023)](https://doi.org/10.1016/j.cag.2023.06.011). These studies inform the design; they do not establish that this website improves comprehension. Repeatable build and test checks follow the continuous-integration approach reviewed by [Soares et al. (2022)](https://doi.org/10.1007/s10664-021-10114-1).
 
 [USAvionix](https://www.usavionix.com/) informed scroll-driven changes in context and scale, [Lando Norris](https://landonorris.com/) the central opening composition, and [bleibtgleich](https://bleibtgleich.dev/) the navigation panels. The implementation uses project content and attributed media.
 

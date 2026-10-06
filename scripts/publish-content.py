@@ -40,6 +40,20 @@ def checksum(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalize_objective_svg(contents: bytes) -> bytes:
+    """Restore eight missing coordinate separators in the source book icon.
+
+    Its generator joins the control y coordinate to the constant endpoint x=86.
+    Match only the confirmed malformed path attributes; leave all other artwork
+    and the research source file unchanged.
+    """
+    for y in (-41, -31, -21, -11, -1, 9, 19, 29):
+        original = f'd="M13 {y + 5}Q43 {y - 13}86 {y}"'.encode()
+        corrected = f'd="M13 {y + 5}Q43 {y - 13} 86 {y}"'.encode()
+        contents = contents.replace(original, corrected)
+    return contents
+
+
 def read_sheet(path: Path, sheet_name: str) -> list[list[str]]:
     """Read stored cell values using the XLSX archive; never open it for writing."""
     with zipfile.ZipFile(path) as archive:
@@ -213,8 +227,12 @@ def main() -> None:
     for chapter, entry in chapters.items():
         (ROOT / "public/chapters" / f"{chapter}.html").write_text(standalone(chapter, entry["html"]), encoding="utf-8")
         for extension in ("svg", "png"):
-            shutil.copyfile(source / "figures" / f"{DIAGRAMS[chapter]}.{extension}",
-                            ROOT / "public/figures" / f"{chapter}.{extension}")
+            figure_source = source / "figures" / f"{DIAGRAMS[chapter]}.{extension}"
+            figure_output = ROOT / "public/figures" / f"{chapter}.{extension}"
+            if chapter == "objective" and extension == "svg":
+                figure_output.write_bytes(normalize_objective_svg(figure_source.read_bytes()))
+            else:
+                shutil.copyfile(figure_source, figure_output)
     (ROOT / "public/chapters/chapter.css").write_text(CHAPTER_CSS, encoding="utf-8")
     (ROOT / "content/chapters.json").write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Published two chapters using {facts['records']} reference records and {facts['studyVariables']} study variables. No R code was executed.")
