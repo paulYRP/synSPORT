@@ -137,6 +137,7 @@ function updateScroll() {
   openingProgress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - height)));
   opening.update(openingProgress);
   const position = document.querySelector('#chapter-position');
+  document.querySelector('.site-header').classList.toggle('has-content', document.querySelector('#introduction').getBoundingClientRect().top <= 100);
   const objectiveTop = document.querySelector('#objective').getBoundingClientRect().top;
   const frameworkTop = document.querySelector('#framework').getBoundingClientRect().top;
   position.textContent = objectiveTop < height * .45 ? 'OBJECTIVE · THE JUDO QUESTION' : frameworkTop < height * .45 ? 'FRAMEWORK · THE APPROACH' : 'SYNTHETIC DATA · SPORT';
