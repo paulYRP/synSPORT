@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Objective · synSPORT</title><meta name="description" content="The full objective chapter of the synSPORT judo research study.">
+<link rel="stylesheet" href="../fonts/roboto.css"><link rel="stylesheet" href="chapter.css"></head><body><main>
+<nav><a href="../#objective">← Return to the study</a><span>synSPORT</span></nav>
+<h1>Objective</h1><article><h2 id="objective-purpose">Purpose</h2>
+<p>Coaches are closely involved in athletes’ weight-management decisions. In a survey of 68 Israeli judo and taekwondo coaches and trainers, 61 reported discussing weight and giving guidance before competition, and personal experience was a prominent source of their advice <span class="citation" data-cites="berkovich2019">(<a href="#objective-ref-berkovich2019" role="doc-biblioref">Berkovich et al. 2019, 534–36</a>)</span>. The paper also describes athletes’ reported reliance on coaches for weight and eating decisions. More recent judo evidence identifies greater perceived coach influence among respondents from the most recent historical competition period <span class="citation" data-cites="morales2026">(<a href="#objective-ref-morales2026" role="doc-biblioref">Morales et al. 2026</a>)</span>. These findings motivate selecting the coach as the user.</p>
+<p>The practical problem is that a coach needs to interpret what an athlete’s weight may be on competition morning, while the available questionnaire records usual loss and following-week regain without linked masses and times for a single competition. This gap prevents those responses from directly answering the next-day question. Published measurements and judo knowledge provide additional evidence for defining the intended use of synthetic competition records.</p>
+<p>The application will help judo coaches assess body mass on competition morning after the official weigh-in. It will estimate next-day mass, regain since weigh-in and the probability of exceeding the applicable International Judo Federation (IJF) random weigh-in limit at a specified check time.</p>
+<p>Body mass is selected as a deliberate study focus. Narrowing the task makes it easier to identify the relevant evidence and apply judo knowledge to a defined outcome. The intended columns will cover the starting mass, official weigh-in mass, next-day mass, preparation duration, elapsed recovery time and athlete context. Together, they describe the circumstances around that outcome and make the intended task explicit.</p>
+<p>A new synthetic population will represent one competition per athlete, informed by compatible questionnaire patterns, published judo measurements and domain knowledge. Its purpose is to provide hypothetical competition records for developing the intended prediction task.</p>
+<ul>
+<li><strong>Operational objective:</strong> help coaches estimate body mass at a specified next-day check, the corresponding regain since official weigh-in and the probability of exceeding the applicable random weigh-in limit.</li>
+<li><strong>Research objective:</strong> develop an evidence-informed synthetic competition dataset for this prediction task and examine how the framework supports justified design decisions, measurable outcomes and information useful to coaches.</li>
+</ul>
+<p>The framework connects the intended user, available evidence and operating conditions to the design decisions <span class="citation" data-cites="ruiz2026framework">(<a href="#objective-ref-ruiz2026framework" role="doc-biblioref">Ruiz Pinto et al. 2026</a>)</span>. In this application, its contribution will be examined through the justification of those decisions, task-relevant quantitative outcomes and coach feedback. Together, these forms of evidence will inform refinement of the framework within this use case. Prediction performance and the contribution of the framework will be interpreted separately.</p>
+<h3 id="objective-users">Users</h3>
+<p>Judo coaches are the primary users. After official weigh-in, the coach enters the athlete’s available measurements and competition context, specifies the intended next-day check time, and reviews the predicted mass and regain alongside the applicable random weigh-in limit. The display must identify the measurement times, units, uncertainty and population supported by the evidence.</p>
+<p>The output supports interpretation of expected body mass for the stated context. It does not establish a benefit from changing food, fluid or weight-reduction practices, or provide an individual prescription.</p>
+<h3 id="objective-questions">Questions</h3>
+<p>The four questions below follow the Objective dimension of the published framework <span class="citation" data-cites="ruiz2026framework">(<a href="#objective-ref-ruiz2026framework" role="doc-biblioref">Ruiz Pinto et al. 2026</a>, Table 3)</span>. Their answers define why synthetic data are needed, what task they should support and who will use the intended output.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What limitation in real data are you trying to overcome?</td>
+<td>The historical questionnaire lacks linked masses before reduction, at official weigh-in and at a next-day check for one competition, together with their measurement times. It therefore cannot directly support the intended next-day prediction task.</td>
+</tr>
+<tr>
+<td>What task or application should the synthetic data support?</td>
+<td>Support development of next-day body-mass prediction for judo coaches, including the corresponding regain, uncertainty and probability of exceeding the applicable IJF random weigh-in limit at a specified check time.</td>
+</tr>
+<tr>
+<td>Are you aiming to replace, augment, or stress-test real data?</td>
+<td>Construct a new dataset of hypothetical athlete-competition records for model development and exploration of plausible weight-change scenarios. The questionnaire remains reference evidence; generated measurements describe hypothetical competitions.</td>
+</tr>
+<tr>
+<td>Who are the end users?</td>
+<td>Judo coaches who interpret expected competition-morning mass using the athlete’s known measurements and competition context.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="objective-overview">Overview</h3>
+<p>The diagram follows the objective from evidence to intended use. Panel A brings together the questionnaire, published measurements and domain knowledge. Panel B defines the hypothetical competition records and their measurement stages. Panel C connects the specified next-day check to the coach’s interpretation of mass, regain, uncertainty and the applicable random-check limit.</p>
+<figure class="chapter-figure">
+<a href="../figures/objective.svg" target="_blank" rel="noopener" aria-label="Open the full Objective diagram"><img src="../figures/objective.svg" alt="Objective study diagram" loading="lazy" decoding="async"></a>
+</figure>
+<h2 id="objective-evidence">Evidence</h2>
+<h3 id="objective-questionnaire">Questionnaire</h3>
+<p>The <code>data</code> sheet in <code>judo.xlsx</code> contains reviewed questionnaire records, and each row describes a historical response from a former high-level athlete, rather than a dated competition event <span class="citation" data-cites="morales2026 morales2025data">(<a href="#objective-ref-morales2026" role="doc-biblioref">Morales et al. 2026</a>; <a href="#objective-ref-morales2025data" role="doc-biblioref">Morales 2025</a>)</span>.</p>
+<details class="code-block">
+<summary>
+R code
+</summary>
+<div class="sourceCode" id="objective-cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="objective-cb1-1"><a href="#objective-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the reviewed questionnaire records</span></span>
+<span id="objective-cb1-2"><a href="#objective-cb1-2" aria-hidden="true" tabindex="-1"></a>inputP <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;judo&quot;</span>, <span class="st">&quot;judo.xlsx&quot;</span>)</span>
+<span id="objective-cb1-3"><a href="#objective-cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(inputP, <span class="at">sheet =</span> <span class="st">&quot;data&quot;</span>, <span class="at">skipEmptyRows =</span> <span class="cn">FALSE</span>)</span>
+<span id="objective-cb1-4"><a href="#objective-cb1-4" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+</details>
+<p>The workbook contains 667 records and 41 study variables. These records provide evidence about reported weight-management patterns.</p>
+<h3 id="objective-measurements">Measurements</h3>
+<p>The source definitions establish which reported quantities can inform the intended task. Their original units and time windows remain attached to them.</p>
+<details class="code-block">
+<summary>
+R code
+</summary>
+<div class="sourceCode" id="objective-cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="objective-cb2-1"><a href="#objective-cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the source definitions for the weight-management measurements</span></span>
+<span id="objective-cb2-2"><a href="#objective-cb2-2" aria-hidden="true" tabindex="-1"></a>measures <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="objective-cb2-3"><a href="#objective-cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;weight_cutting_usuallykg&quot;</span>,</span>
+<span id="objective-cb2-4"><a href="#objective-cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;weight_cutting_daysbefore&quot;</span>,</span>
+<span id="objective-cb2-5"><a href="#objective-cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;weight_regain_nextweekcomp&quot;</span>,</span>
+<span id="objective-cb2-6"><a href="#objective-cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;weight_cutting_maxkg&quot;</span>,</span>
+<span id="objective-cb2-7"><a href="#objective-cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;weight_current&quot;</span></span>
+<span id="objective-cb2-8"><a href="#objective-cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="objective-cb2-9"><a href="#objective-cb2-9" aria-hidden="true" tabindex="-1"></a>sourceP <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;judo&quot;</span>, <span class="st">&quot;judoDIC.xlsx&quot;</span>)</span>
+<span id="objective-cb2-10"><a href="#objective-cb2-10" aria-hidden="true" tabindex="-1"></a>definitions <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">read.xlsx</span>(sourceP, <span class="at">sheet =</span> <span class="st">&quot;dictionary&quot;</span>)</span>
+<span id="objective-cb2-11"><a href="#objective-cb2-11" aria-hidden="true" tabindex="-1"></a>definitions <span class="ot">&lt;-</span> definitions[</span>
+<span id="objective-cb2-12"><a href="#objective-cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">match</span>(measures, definitions<span class="sc">$</span>variable),</span>
+<span id="objective-cb2-13"><a href="#objective-cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">&quot;variable&quot;</span>, <span class="st">&quot;description&quot;</span>, <span class="st">&quot;unit&quot;</span>)</span>
+<span id="objective-cb2-14"><a href="#objective-cb2-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="objective-cb2-15"><a href="#objective-cb2-15" aria-hidden="true" tabindex="-1"></a>definitions</span></code></pre></div>
+</details>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>weight_cutting_usuallykg</td>
+<td>Usual reported body mass lost</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>weight_cutting_daysbefore</td>
+<td>Days used to adjust body mass before competition</td>
+<td>days</td>
+</tr>
+<tr>
+<td>weight_regain_nextweekcomp</td>
+<td>Body mass regained in the week after competition</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>weight_cutting_maxkg</td>
+<td>Maximum reported body mass lost</td>
+<td>kg</td>
+</tr>
+<tr>
+<td>weight_current</td>
+<td>Current body mass at the questionnaire</td>
+<td>kg</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Source</th>
+<th>Contribution to the objective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usual reported loss and preparation duration</td>
+<td>Inform compatible loss and preparation patterns after accounting for the source population and historical context.</td>
+</tr>
+<tr>
+<td>Maximum reported loss</td>
+<td>Describe the largest recalled loss.</td>
+</tr>
+<tr>
+<td>Following-week regain</td>
+<td>Describes a separate historical outcome with a different time window from next-day regain.</td>
+</tr>
+<tr>
+<td>Current age and body mass</td>
+<td>Describe the respondent at the survey, after the competitive career.</td>
+</tr>
+<tr>
+<td>Historical division</td>
+<td>Describes a harmonised category; it does not establish measured weigh-in mass or a current category limit.</td>
+</tr>
+</tbody>
+</table>
+<p>Consequently, competition measurements will be generated in a new dataset. Appending them to the questionnaire would attach assumed event measurements to historical respondents. Variables absent from every source record require auxiliary information or assumptions about their joint relationships, rather than ordinary missing-value imputation <span class="citation" data-cites="moretti2023">(<a href="#objective-ref-moretti2023" role="doc-biblioref">Moretti and Shlomo 2023</a>)</span>.</p>
+<p>The sources describe different populations and measurement windows. Their summaries do not determine all relationships between the proposed variables. Judo knowledge can help specify those relationships, but each assumption must remain distinguishable from an observed finding.</p>
+<h3 id="objective-population">Population</h3>
+<p>The synthetic population will follow the ages, sexes, competition levels and measurement settings represented by the studies describing overnight regain. Age will mean age at the represented competition. Numerical age limits will come from reported eligibility criteria or observed ranges; means, standard deviations and confidence intervals do not establish those limits.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Evidence</th>
+<th>Population and measurements</th>
+<th>Relevance to the objective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="citation" data-cites="ceylan2023">Ceylan and Balci (<a href="#objective-ref-ceylan2023" role="doc-biblioref">2023</a>)</span></td>
+<td>35 men and 15 women measured at official weigh-in and on competition morning.</td>
+<td>Establish that paired weigh-in and competition-morning measurements have been studied in both sexes.</td>
+</tr>
+<tr>
+<td><span class="citation" data-cites="bialowas2023">Bialowas et al. (<a href="#objective-ref-bialowas2023" role="doc-biblioref">2023</a>)</span></td>
+<td>17 men, mean age 18.8 years with SD 0.5; measurements before the event, at weigh-in and around the competition warm-up.</td>
+<td>Provide evidence about mass changes across defined competition stages.</td>
+</tr>
+<tr>
+<td><span class="citation" data-cites="ceylan2022">Ceylan et al. (<a href="#objective-ref-ceylan2022" role="doc-biblioref">2022</a>)</span></td>
+<td>18 men in weight-loss and control groups, mean ages 19.8 and 19.1 years; a simulated weigh-in followed by 15 hours of recovery.</td>
+<td>Provide evidence about a defined overnight recovery interval.</td>
+</tr>
+</tbody>
+</table>
+<p>These studies help define the population and measurement window to which the intended use applies. Neither the historical questionnaire’s full age distribution nor evidence from one group will automatically be transferred to another.</p>
+<h3 id="objective-weight-timing">Weight timing</h3>
+<p>With the population defined, each synthetic record will represent one athlete in one competition and link three mass measurements. Prediction will occur after official weigh-in, using measurements already available and the intended next-day check time. This defines a prediction within one competition, without requiring repeated competitions or season-long athlete monitoring.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Definition</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starting mass, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mn>0</mn></msub><annotation encoding="application/x-tex">m_0</annotation></semantics></math></td>
+<td>Body mass before the defined reduction period, in kg.</td>
+<td>Predictor and reference for preceding loss.</td>
+</tr>
+<tr>
+<td>Official mass, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>w</mi></msub><annotation encoding="application/x-tex">m_w</annotation></semantics></math></td>
+<td>Recorded body mass at official weigh-in, in kg.</td>
+<td>Predictor and reference for regain.</td>
+</tr>
+<tr>
+<td>Check mass, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>c</mi></msub><annotation encoding="application/x-tex">m_c</annotation></semantics></math></td>
+<td>Body mass at the specified next-day check, before competing, in kg.</td>
+<td>Prediction outcome.</td>
+</tr>
+<tr>
+<td>Preparation, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math></td>
+<td>Days between the defined start of reduction and official weigh-in.</td>
+<td>Predictor.</td>
+</tr>
+<tr>
+<td>Recovery interval, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>h</mi><annotation encoding="application/x-tex">h</annotation></semantics></math></td>
+<td>Hours between official weigh-in and the intended next-day check.</td>
+<td>Predictor defining the horizon.</td>
+</tr>
+<tr>
+<td>Athlete context</td>
+<td>Competition age, sex and event category supported by the selected evidence.</td>
+<td>Contextual predictors available at official weigh-in.</td>
+</tr>
+</tbody>
+</table>
+<p>The intended check time defines the prediction horizon. When the next-day mass is observed, its actual measurement time must also be recorded. That mass, the resulting regain and information collected during subsequent recovery are later observations and cannot serve as inputs to the prediction made at official weigh-in <span class="citation" data-cites="riley2024">(<a href="#objective-ref-riley2024" role="doc-biblioref">Riley et al. 2024</a>)</span>.</p>
+<p>A measurement taken five days before competition is not automatically the start of weight reduction. Likewise, mass after a warm-up cannot be treated as an earlier random-check measurement without accounting for that difference. These timing distinctions determine which published measurements address the intended question <span class="citation" data-cites="bialowas2023">(<a href="#objective-ref-bialowas2023" role="doc-biblioref">Bialowas et al. 2023</a>)</span>.</p>
+<p>For the new competition records, the linked quantities are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><msub><mi>m</mi><mn>0</mn></msub><mo>−</mo><msub><mi>m</mi><mi>w</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><mi>G</mi><mo>=</mo><msub><mi>m</mi><mi>c</mi></msub><mo>−</mo><msub><mi>m</mi><mi>w</mi></msub><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>m</mi><mi>c</mi></msub><mo>=</mo><msub><mi>m</mi><mi>w</mi></msub><mo>+</mo><mi>G</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">
+L = m_0 - m_w, \qquad G = m_c - m_w, \qquad m_c = m_w + G.
+</annotation></semantics></math></p>
+<p>Here, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math> is the preceding mass loss and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> is the change after official weigh-in. Positive <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> represents regain; negative <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>G</mi><annotation encoding="application/x-tex">G</annotation></semantics></math> represents further loss.</p>
+<p>The primary output will be a predicted distribution for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>m</mi><mi>c</mi></msub><annotation encoding="application/x-tex">m_c</annotation></semantics></math>. Subtracting the known official mass gives the corresponding regain distribution and preserves its uncertainty.</p>
+<h3 id="objective-regulation">Regulation</h3>
+<p>The IJF rules dated 14 August 2026 specify a random weigh-in limit based on the category’s upper limit. The comparison uses the published table, including its rounding and age-category allowances <span class="citation" data-cites="ijf2026">(<a href="#objective-ref-ijf2026" role="doc-biblioref">International Judo Federation 2026, 77–80</a>)</span>.</p>
+<ul>
+<li>The official weigh-in is normally held the previous day at 16:00; the event schedule determines the actual elapsed recovery interval.</li>
+<li>Random checks apply to individual events. Four athletes per category are drawn, excluding the plus categories. Mixed-team weigh-in follows separate rules.</li>
+<li>The random-check allowance is 5% above the category’s upper limit, rather than the athlete’s actual official mass. For senior and junior athletes in the -73 kg category, the published threshold is 76.7 kg. Cadet thresholds include the specified underwear allowance.</li>
+<li>The comparison concerns exceeding the applicable limit if checked at the specified time. It does not estimate the probability of selection or disqualification.</li>
+</ul>
+<p>The threshold provides a regulatory comparison; it is not a physiological upper bound. Plausible above-limit outcomes must remain possible for the intended exceedance prediction. Regulatory compliance does not establish hydration or physiological recovery <span class="citation" data-cites="ceylan2023">(<a href="#objective-ref-ceylan2023" role="doc-biblioref">Ceylan and Balci 2023</a>)</span>.</p>
+<p>Assessment on synthetic records will describe performance under the generation assumptions. Predictive validity for athletes requires independent competition records containing the relevant measured inputs and next-day outcome <span class="citation" data-cites="riley2024">(<a href="#objective-ref-riley2024" role="doc-biblioref">Riley et al. 2024</a>)</span>. A held-out questionnaire sample cannot provide that evidence because it does not contain the next-day measurement.</p>
+<h2 id="objective-outputs">Outputs</h2>
+<p>This document defines the motivation, user, evidence gap and intended task. It retains the questionnaire reference <code>data</code> and source measurement <code>definitions</code>, and presents the four framework answers as a Markdown table. Together, the narrative and diagram specify the intended population, available inputs, prediction horizon and coach-facing outputs.</p>
+<h3 id="objective-workbook">Workbook</h3>
+<p>Running the following export updates the <code>objective</code> sheet in <code>judo.xlsx</code>. It preserves the existing questionnaire <code>data</code> sheet, UIDs and any other sheets. The reference definitions remain in <code>judoDIC.xlsx</code>.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Sheet</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data</code></td>
+<td>Existing questionnaire records and UIDs.</td>
+</tr>
+<tr>
+<td><code>objective</code></td>
+<td>Four framework questions and answers describing the prediction purpose, evidence gap, synthetic role and coach use.</td>
+</tr>
+</tbody>
+</table>
+<p>The export reads the four answers directly from the Questions table so the document and workbook use the same wording.</p>
+<details class="code-block">
+<summary>
+R code
+</summary>
+<div class="sourceCode" id="objective-cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="objective-cb3-1"><a href="#objective-cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the four framework answers from the Markdown table</span></span>
+<span id="objective-cb3-2"><a href="#objective-cb3-2" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;objectiveJD.Rmd&quot;</span>, <span class="at">warn =</span> <span class="cn">FALSE</span>, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="objective-cb3-3"><a href="#objective-cb3-3" aria-hidden="true" tabindex="-1"></a>rows <span class="ot">&lt;-</span> <span class="fu">seq.int</span>(<span class="fu">match</span>(<span class="st">&quot;## Questions&quot;</span>, text) <span class="sc">+</span> <span class="dv">1</span><span class="dt">L</span>,</span>
+<span id="objective-cb3-4"><a href="#objective-cb3-4" aria-hidden="true" tabindex="-1"></a>                <span class="fu">match</span>(<span class="st">&quot;## Overview&quot;</span>, text) <span class="sc">-</span> <span class="dv">1</span><span class="dt">L</span>)</span>
+<span id="objective-cb3-5"><a href="#objective-cb3-5" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> text[rows]</span>
+<span id="objective-cb3-6"><a href="#objective-cb3-6" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> text[<span class="fu">grepl</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">|&quot;</span>, text)]</span>
+<span id="objective-cb3-7"><a href="#objective-cb3-7" aria-hidden="true" tabindex="-1"></a>objective <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="at">text =</span> text, <span class="at">sep =</span> <span class="st">&quot;|&quot;</span>, <span class="at">skip =</span> <span class="dv">2</span>,</span>
+<span id="objective-cb3-8"><a href="#objective-cb3-8" aria-hidden="true" tabindex="-1"></a>                        <span class="at">header =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="st">&quot;&quot;</span>, <span class="at">comment.char =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="objective-cb3-9"><a href="#objective-cb3-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">strip.white =</span> <span class="cn">TRUE</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="objective-cb3-10"><a href="#objective-cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(objective) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;question&quot;</span>, <span class="st">&quot;answer&quot;</span>)</span>
+<span id="objective-cb3-11"><a href="#objective-cb3-11" aria-hidden="true" tabindex="-1"></a>objective</span></code></pre></div>
+</details>
+<details class="code-block">
+<summary>
+R code
+</summary>
+<div class="sourceCode" id="objective-cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="objective-cb4-1"><a href="#objective-cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the objective specification while preserving the other sheets</span></span>
+<span id="objective-cb4-2"><a href="#objective-cb4-2" aria-hidden="true" tabindex="-1"></a>outputP <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;judo&quot;</span>, <span class="st">&quot;judo.xlsx&quot;</span>)</span>
+<span id="objective-cb4-3"><a href="#objective-cb4-3" aria-hidden="true" tabindex="-1"></a>workbook <span class="ot">&lt;-</span> openxlsx<span class="sc">::</span><span class="fu">loadWorkbook</span>(outputP)</span>
+<span id="objective-cb4-4"><a href="#objective-cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="st">&quot;objective&quot;</span> <span class="sc">%in%</span> <span class="fu">names</span>(workbook)) {</span>
+<span id="objective-cb4-5"><a href="#objective-cb4-5" aria-hidden="true" tabindex="-1"></a>  openxlsx<span class="sc">::</span><span class="fu">removeWorksheet</span>(workbook, <span class="st">&quot;objective&quot;</span>)</span>
+<span id="objective-cb4-6"><a href="#objective-cb4-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="objective-cb4-7"><a href="#objective-cb4-7" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">addWorksheet</span>(workbook, <span class="st">&quot;objective&quot;</span>)</span>
+<span id="objective-cb4-8"><a href="#objective-cb4-8" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">writeData</span>(workbook, <span class="st">&quot;objective&quot;</span>, objective, <span class="at">rowNames =</span> <span class="cn">FALSE</span>,</span>
+<span id="objective-cb4-9"><a href="#objective-cb4-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">headerStyle =</span> <span class="cn">NULL</span>, <span class="at">borders =</span> <span class="st">&quot;none&quot;</span>, <span class="at">withFilter =</span> <span class="cn">FALSE</span>)</span>
+<span id="objective-cb4-10"><a href="#objective-cb4-10" aria-hidden="true" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">saveWorkbook</span>(workbook, outputP, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="objective-cb4-11"><a href="#objective-cb4-11" aria-hidden="true" tabindex="-1"></a>outputP</span></code></pre></div>
+</details>
+<h2 class="unnumbered" id="objective-references">References</h2>
+<div id="objective-refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="objective-ref-berkovich2019" class="csl-entry" role="listitem">
+Berkovich, Ben-El, Aliza H. Stark, Alon Eliakim, Dan Nemet, and Tali Sinai. 2019. <span>“Rapid Weight Loss in Competitive Judo and Taekwondo Athletes: Attitudes and Practices of Coaches and Trainers.”</span> <em>International Journal of Sport Nutrition and Exercise Metabolism</em> 29 (5): 532–38. <a href="https://doi.org/10.1123/ijsnem.2018-0367">https://doi.org/10.1123/ijsnem.2018-0367</a>.
+</div>
+<div id="objective-ref-bialowas2023" class="csl-entry" role="listitem">
+Bialowas, Dawid, Radoslaw Laskowski, Emerson Franchini, and Sylwester Kujach. 2023. <span>“Examining the Effects of Pre-Competition Rapid Weight Loss on Hydration Status and Competition Performance in Elite Judo Athletes.”</span> <em>Scientific Reports</em> 13: 14756. <a href="https://doi.org/10.1038/s41598-023-41872-1">https://doi.org/10.1038/s41598-023-41872-1</a>.
+</div>
+<div id="objective-ref-ceylan2022" class="csl-entry" role="listitem">
+Ceylan, Bayram, Latif Aydos, and Jožef Šimenko. 2022. <span>“Effect of Rapid Weight Loss on Hydration Status and Performance in Elite Judo Athletes.”</span> <em>Biology</em> 11 (4): 500. <a href="https://doi.org/10.3390/biology11040500">https://doi.org/10.3390/biology11040500</a>.
+</div>
+<div id="objective-ref-ceylan2023" class="csl-entry" role="listitem">
+Ceylan, Bayram, and Sukru Serdar Balci. 2023. <span>“Dehydration and Rapid Weight Gain Between Weigh-in and Competition in Judo Athletes: The Differences Between Women and Men.”</span> <em>Research in Sports Medicine</em> 31 (4): 462–72. <a href="https://doi.org/10.1080/15438627.2021.1989435">https://doi.org/10.1080/15438627.2021.1989435</a>.
+</div>
+<div id="objective-ref-ijf2026" class="csl-entry" role="listitem">
+International Judo Federation. 2026. <em><span>IJF</span> Sport and Organisation Rules</em>. International Judo Federation. <a href="https://78884ca60822a34fb0e6-082b8fd5551e97bc65e327988b444396.ssl.cf3.rackcdn.com/up/2026/08/IJF_Sport_and_Organisation_Rul-1787430903.pdf">https://78884ca60822a34fb0e6-082b8fd5551e97bc65e327988b444396.ssl.cf3.rackcdn.com/up/2026/08/IJF_Sport_and_Organisation_Rul-1787430903.pdf</a>.
+</div>
+<div id="objective-ref-morales2025data" class="csl-entry" role="listitem">
+Morales, Jose. 2025. <span>“Dataset from Trends in Weight Loss Strategies and Sources of Guidance for High-Level Judo Athletes During the Last Four Decades.”</span> Version 1. Figshare. <a href="https://doi.org/10.6084/m9.figshare.29483099.v1">https://doi.org/10.6084/m9.figshare.29483099.v1</a>.
+</div>
+<div id="objective-ref-morales2026" class="csl-entry" role="listitem">
+Morales, Jose, Cristina Curto, Emerson Franchini, et al. 2026. <span>“Trends in Weight Loss Strategies and Sources of Guidance for High-Level Judo Athletes During the Last Four Decades.”</span> <em>Sport Sciences for Health</em> 22 (2): 148. <a href="https://doi.org/10.1007/s11332-026-01735-4">https://doi.org/10.1007/s11332-026-01735-4</a>.
+</div>
+<div id="objective-ref-moretti2023" class="csl-entry" role="listitem">
+Moretti, Angelo, and Natalie Shlomo. 2023. <span>“Improving Statistical Matching When Auxiliary Information Is Available.”</span> <em>Journal of Survey Statistics and Methodology</em> 11 (3): 619–42. <a href="https://doi.org/10.1093/jssam/smac038">https://doi.org/10.1093/jssam/smac038</a>.
+</div>
+<div id="objective-ref-riley2024" class="csl-entry" role="listitem">
+Riley, Richard D., Lucinda Archer, Kym I. E. Snell, et al. 2024. <span>“Evaluation of Clinical Prediction Models (Part 2): How to Undertake an External Validation Study.”</span> <em>BMJ</em> 384: e074820. <a href="https://doi.org/10.1136/bmj-2023-074820">https://doi.org/10.1136/bmj-2023-074820</a>.
+</div>
+<div id="objective-ref-ruiz2026framework" class="csl-entry" role="listitem">
+Ruiz Pinto, Paul Yomer, Paul Pao-Yen Wu, John Warmenhoven, Kerrie Mengersen, and Divya Mehta. 2026. <span>“Synthetic Data Generation in Sport: A Framework for Design, Privacy, Utility, Fidelity, and Deployment.”</span> <em>Journal of Sports Analytics</em> 12: 1–22. <a href="https://doi.org/10.1177/22150218261474554">https://doi.org/10.1177/22150218261474554</a>.
+</div>
+</div>
+</article>
+<footer><a href="../#objective">Return to the interactive study</a></footer>
+</main></body></html>

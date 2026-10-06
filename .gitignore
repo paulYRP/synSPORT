@@ -1,0 +1,11 @@
+/dev/
+/node_modules/
+/dist/
+/test-results/
+/playwright-report/
+/.browser-profile/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store

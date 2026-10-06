@@ -1,0 +1,21 @@
+{
+  "name": "synsport",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Synthetic data generation applied to sport: an interactive framework and judo objective.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "test": "playwright test",
+    "test:e2e": "playwright test",
+    "test:live": "playwright test --project=desktop",
+    "check": "node scripts/check-build.mjs",
+    "check:build": "node scripts/check-build.mjs",
+    "content": "python scripts/publish-content.py"
+  },
+  "engines": { "node": ">=22.12.0" },
+  "dependencies": { "three": "0.180.0" },
+  "devDependencies": { "@playwright/test": "^1.58.0", "vite": "8.3.2" }
+}

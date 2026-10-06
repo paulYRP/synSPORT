@@ -1,0 +1,347 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4800" height="2800" viewBox="0 0 2400 1400"><defs>
+<linearGradient id="gi" x1="0" x2="1" y1="0" y2=".3"><stop stop-color="#e9f1f5" /><stop offset=".4" stop-color="#ffffff" /><stop offset=".72" stop-color="#e2ebf0" /><stop offset="1" stop-color="#b9ccd8" /></linearGradient>
+<linearGradient id="giBlue" x1="0" x2="1" y1="0" y2=".2"><stop stop-color="#5e8ea6" /><stop offset=".4" stop-color="#92b6c9" /><stop offset="1" stop-color="#39697f" /></linearGradient>
+<linearGradient id="skin" x1="0" x2="1" y1="0" y2=".3"><stop stop-color="#e2c8b4" /><stop offset=".45" stop-color="#f1decc" /><stop offset="1" stop-color="#b69d8d" /></linearGradient>
+<linearGradient id="paper" x1="0" x2="1"><stop stop-color="#fff" /><stop offset="1" stop-color="#e9f0f3" /></linearGradient>
+<linearGradient id="steel" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#eaf0f1" /><stop offset=".5" stop-color="#b8c7cc" /><stop offset="1" stop-color="#8da1aa" /></linearGradient>
+<linearGradient id="screen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f7fbfc" /><stop offset="1" stop-color="#e6eff2" /></linearGradient>
+<radialGradient id="shadow"><stop stop-color="#647982" stop-opacity=".20" /><stop offset="1" stop-color="#647982" stop-opacity="0" /></radialGradient>
+<pattern id="weave" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 1H4M1 0V4" stroke="#637e8f" stroke-width=".25" opacity=".15" /></pattern>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#738891" /></marker>
+</defs>
+<rect width="2400" height="1400" fill="white" /><text x="75" y="115" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="700" fill="#397EA4" text-anchor="start"><tspan x="75" dy="0">A</tspan></text><text x="140" y="115" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" fill="#273C49" text-anchor="start"><tspan x="140" dy="0">Evidence</tspan></text><text x="855" y="115" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="700" fill="#348D84" text-anchor="start"><tspan x="855" dy="0">B</tspan></text><text x="920" y="115" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" fill="#273C49" text-anchor="start"><tspan x="920" dy="0">Synthetic</tspan></text><text x="1660" y="115" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="700" fill="#876AA9" text-anchor="start"><tspan x="1660" dy="0">C</tspan></text><text x="1725" y="115" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700" fill="#273C49" text-anchor="start"><tspan x="1725" dy="0">Prediction</tspan></text><path d="M790 190L790 1270" fill="none" stroke="#E0E7EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><path d="M1590 190L1590 1270" fill="none" stroke="#E0E7EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /><g transform="translate(180 365) scale(1.25)">
+<ellipse cx="0" cy="111" rx="67" ry="10" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-60-84L56-82L61 105L-55 108Z" fill="#bdcbd2" stroke="#748a97" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-50-73L47-73L50 96L-46 98Z" fill="url(#paper)" stroke="#acbec8" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18-87Q-17-100 1-100Q18-100 18-87L30-87L30-70L-31-70L-31-87Z" fill="#8397a3" stroke="#536d7b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-12" y="-94" width="24" height="9" rx="4" fill="#f8fafb" stroke="#667c88" stroke-width="1" />
+<rect x="-35" y="-45" width="10" height="10" rx="1" fill="white" stroke="#347fa8" stroke-width="1.2" />
+<path d="M-34 -40l3 3l6-9" fill="none" stroke="#347fa8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 -42L33 -42" fill="none" stroke="#8198a4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 -35L23 -35" fill="none" stroke="#c1cdd3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-35" y="-18" width="10" height="10" rx="1" fill="white" stroke="#347fa8" stroke-width="1.2" />
+<path d="M-34 -13l3 3l6-9" fill="none" stroke="#347fa8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 -15L33 -15" fill="none" stroke="#8198a4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 -8L23 -8" fill="none" stroke="#c1cdd3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-35" y="9" width="10" height="10" rx="1" fill="white" stroke="#347fa8" stroke-width="1.2" />
+<path d="M-34 14l3 3l6-9" fill="none" stroke="#347fa8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 12L33 12" fill="none" stroke="#8198a4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 19L23 19" fill="none" stroke="#c1cdd3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-35" y="36" width="10" height="10" rx="1" fill="white" stroke="#347fa8" stroke-width="1.2" />
+<path d="M-15 39L33 39" fill="none" stroke="#8198a4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 46L23 46" fill="none" stroke="#c1cdd3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-35" y="63" width="10" height="10" rx="1" fill="white" stroke="#347fa8" stroke-width="1.2" />
+<path d="M-34 68l3 3l6-9" fill="none" stroke="#347fa8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 66L33 66" fill="none" stroke="#8198a4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 73L23 73" fill="none" stroke="#c1cdd3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="330" y="330" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#397EA4" text-anchor="start"><tspan x="330" dy="0">Questionnaire</tspan></text><text x="330" y="395" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#273C49" text-anchor="start"><tspan x="330" dy="0">Morales et al., 2026</tspan></text><g transform="translate(180 725) scale(1.25)">
+<ellipse cx="0" cy="104" rx="82" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-55-75L72-52L40 108L-79 85Z" fill="#dbe5e9" stroke="#b4c4cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-52-93L72-82L62 98L-63 89Z" fill="#eff4f6" stroke="#a5bac5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-67-100L49-100L67-81L67 87L-67 87Z" fill="url(#paper)" stroke="#879fad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M49-100L49-81L67-81" fill="#d5e2e9" stroke="#879fad" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-49" y="-75" width="74" height="9" rx="1" fill="#347fa8" stroke="none" stroke-width="2" />
+<path d="M-49 -57L46 -57" fill="none" stroke="#8da2ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-49 -49L25 -49" fill="none" stroke="#bccbd2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 -28L-46 18" fill="none" stroke="#91a6b2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 18L43 18" fill="none" stroke="#91a6b2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-34" y="0" width="9" height="17" rx="0" fill="#b5d4db" stroke="none" stroke-width="2" />
+<rect x="-19" y="-12" width="9" height="29" rx="0" fill="#8ab7c7" stroke="none" stroke-width="2" />
+<rect x="-4" y="-23" width="9" height="40" rx="0" fill="#548fa9" stroke="none" stroke-width="2" />
+<rect x="11" y="-14" width="9" height="31" rx="0" fill="#82abbc" stroke="none" stroke-width="2" />
+<rect x="26" y="-5" width="9" height="22" rx="0" fill="#aecbd4" stroke="none" stroke-width="2" />
+<path d="M-48 37L48 37" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 45L48 45" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 53L23 53" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 66L48 66" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 74L48 74" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="330" y="655" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#348D84" text-anchor="start"><tspan x="330" dy="0">Measurements</tspan></text><text x="330" y="725" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="400" fill="#273C49" text-anchor="start"><tspan x="330" dy="0">Ceylan and Balci, 2023</tspan><tspan x="330" dy="39.150000000000006">Białowąs et al., 2023</tspan><tspan x="330" dy="39.150000000000006">Ceylan et al., 2022</tspan></text><g transform="translate(180 1090) scale(1.06)">
+<ellipse cx="0" cy="55" rx="110" ry="15" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-108-57Q-54-77 0-46Q54-77 108-57L105 48Q44 33 0 60Q-42 32-107 50Z" fill="#759783" stroke="#416756" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-102-62Q-50-80 0-49L0 50Q-50 21-103 43Z" fill="url(#paper)" stroke="#bdc8c5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M0-49Q50-80 102-62L103 43Q50 21 0 50Z" fill="#fbfcf8" stroke="#bdc8c5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 -41Q-43 -54-13 -36" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -36Q43 -5486 -41" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 -31Q-43 -44-13 -26" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -26Q43 -4486 -31" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 -21Q-43 -34-13 -16" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -16Q43 -3486 -21" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 -11Q-43 -24-13 -6" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 -6Q43 -2486 -11" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 -1Q-43 -14-13 4" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 4Q43 -1486 -1" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 9Q-43 -4-13 14" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 14Q43 -486 9" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 19Q-43 6-13 24" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 24Q43 686 19" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-86 29Q-43 16-13 34" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 34Q43 1686 29" fill="none" stroke="#b6c5c3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M2-44L6 42L16 36L20 44L16-50Z" fill="#a9c5b7" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="330" y="1100" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#AF7D34" text-anchor="start"><tspan x="330" dy="0">Domain knowledge</tspan></text><path d="M721 365L753 365L753 1090L721 1090" fill="none" stroke="#81949E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M721 725L753 725" fill="none" stroke="#81949E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M753 565L835 565" fill="none" stroke="#81949E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" /><text x="1200" y="220" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" fill="#348D84" text-anchor="middle"><tspan x="1200" dy="0">New athlete records</tspan></text><g transform="translate(930 305) scale(0.92)">
+<ellipse cx="0" cy="312" rx="83" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-48 288Q-54 298-48 307L-13 308Q-8 306-12 301L-25 292Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M22 291L11 302Q9 307 16 308L51 307Q56 302 45 289Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 161Q-48 196-47 224L-48 291Q-37 298-17 293L-7 237L0 201L8 239L16 293Q34 299 49 290L45 225Q43 188 37 161Z" fill="url(#gi)" stroke="#9baebc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-33 191Q-24 213-30 236M-18 214L-29 225M-46 246L-31 242M-42 281L-21 276M18 195Q31 217 26 236M21 219L38 229M27 257L46 262M19 281L36 284" fill="none" stroke="#9baebc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 165Q-13 180 0 179Q24 179 39 164" fill="none" stroke="#9baebc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-69 141Q-77 156-70 166Q-65 171-59 164L-54 151Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M62 139Q75 149 72 160Q69 170 63 166L53 154Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-66 154L-68 162M-62 154L-64 163M64 153L69 159M61 156L65 163" fill="none" stroke="#ad9684" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#gi)" stroke="#9baebc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#weave)" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-13 43L-16 63L0 83L18 61L12 43Z" fill="url(#skin)" stroke="#b59f8c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 53L-26 63L11 139L20 130L-8 77Z" fill="#e8f0f3" stroke="#9baebc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M17 52L27 62L-12 141L-23 133L8 75Z" fill="#f8fbfc" stroke="#9baebc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-21 61L15 133M22 61L-18 135" fill="none" stroke="#9baebc" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 83L-39 108M-60 117L-50 109M-56 129L-47 122M-38 138L-31 145M-28 158L-9 148M46 84L39 104M58 116L47 110M54 132L46 122M19 154L37 163" fill="none" stroke="#9baebc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 71Q-42 84-36 100M35 70Q42 87 37 100" fill="none" stroke="#9baebc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-37 136Q0 145 39 136L38 149Q0 156-38 148Z" fill="#293a44" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-4 147L-15 183L-2 187L7 151M8 146L11 184L24 181L17 146" fill="#31464e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-6 139L9 137L19 146L7 155L-8 149Z" fill="#42565e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 141Q0 149 35 141M-10 179L0 182M14 177L22 175" fill="none" stroke="#657780" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="-17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<ellipse cx="17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<path d="M-17 20Q-18 2 0 1Q19 2 18 22L15 40Q7 53-2 49Q-15 46-17 31Z" fill="url(#skin)" stroke="#b8a494" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 24L-19 13Q-15-2 0-3Q17-2 20 12L17 25L13 13Q4 18-11 11Z" fill="#37434a" stroke="#37434a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1 23L-2 32L2 33M-5 40Q1 42 6 39" fill="none" stroke="#b7a28f" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-10 25L-5 25M6 25L11 24" fill="none" stroke="#78726c" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g transform="translate(1060 275) scale(1.06)">
+<ellipse cx="0" cy="312" rx="83" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-48 288Q-54 298-48 307L-13 308Q-8 306-12 301L-25 292Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M22 291L11 302Q9 307 16 308L51 307Q56 302 45 289Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 161Q-48 196-47 224L-48 291Q-37 298-17 293L-7 237L0 201L8 239L16 293Q34 299 49 290L45 225Q43 188 37 161Z" fill="url(#giBlue)" stroke="#4e758a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-33 191Q-24 213-30 236M-18 214L-29 225M-46 246L-31 242M-42 281L-21 276M18 195Q31 217 26 236M21 219L38 229M27 257L46 262M19 281L36 284" fill="none" stroke="#4e758a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 165Q-13 180 0 179Q24 179 39 164" fill="none" stroke="#4e758a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-69 141Q-77 156-70 166Q-65 171-59 164L-54 151Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M62 139Q75 149 72 160Q69 170 63 166L53 154Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-66 154L-68 162M-62 154L-64 163M64 153L69 159M61 156L65 163" fill="none" stroke="#ad9684" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#giBlue)" stroke="#4e758a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#weave)" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-13 43L-16 63L0 83L18 61L12 43Z" fill="url(#skin)" stroke="#b59f8c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 53L-26 63L11 139L20 130L-8 77Z" fill="#c4d7e2" stroke="#4e758a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M17 52L27 62L-12 141L-23 133L8 75Z" fill="#a7c4d5" stroke="#4e758a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-21 61L15 133M22 61L-18 135" fill="none" stroke="#4e758a" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 83L-39 108M-60 117L-50 109M-56 129L-47 122M-38 138L-31 145M-28 158L-9 148M46 84L39 104M58 116L47 110M54 132L46 122M19 154L37 163" fill="none" stroke="#4e758a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 71Q-42 84-36 100M35 70Q42 87 37 100" fill="none" stroke="#4e758a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-37 136Q0 145 39 136L38 149Q0 156-38 148Z" fill="#293a44" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-4 147L-15 183L-2 187L7 151M8 146L11 184L24 181L17 146" fill="#31464e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-6 139L9 137L19 146L7 155L-8 149Z" fill="#42565e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 141Q0 149 35 141M-10 179L0 182M14 177L22 175" fill="none" stroke="#657780" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="-17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<ellipse cx="17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<path d="M-17 20Q-18 2 0 1Q19 2 18 22L15 40Q7 53-2 49Q-15 46-17 31Z" fill="url(#skin)" stroke="#b8a494" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 24L-19 13Q-15-2 0-3Q17-2 20 12L17 25L13 13Q4 18-11 11Z" fill="#37434a" stroke="#37434a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1 23L-2 32L2 33M-5 40Q1 42 6 39" fill="none" stroke="#b7a28f" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-10 25L-5 25M6 25L11 24" fill="none" stroke="#78726c" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g transform="translate(1192 302) scale(0.95)">
+<ellipse cx="0" cy="312" rx="83" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-48 288Q-54 298-48 307L-13 308Q-8 306-12 301L-25 292Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M22 291L11 302Q9 307 16 308L51 307Q56 302 45 289Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 161Q-48 196-47 224L-48 291Q-37 298-17 293L-7 237L0 201L8 239L16 293Q34 299 49 290L45 225Q43 188 37 161Z" fill="url(#gi)" stroke="#9baebc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-33 191Q-24 213-30 236M-18 214L-29 225M-46 246L-31 242M-42 281L-21 276M18 195Q31 217 26 236M21 219L38 229M27 257L46 262M19 281L36 284" fill="none" stroke="#9baebc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 165Q-13 180 0 179Q24 179 39 164" fill="none" stroke="#9baebc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-69 141Q-77 156-70 166Q-65 171-59 164L-54 151Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M62 139Q75 149 72 160Q69 170 63 166L53 154Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-66 154L-68 162M-62 154L-64 163M64 153L69 159M61 156L65 163" fill="none" stroke="#ad9684" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#gi)" stroke="#9baebc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#weave)" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-13 43L-16 63L0 83L18 61L12 43Z" fill="url(#skin)" stroke="#b59f8c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 53L-26 63L11 139L20 130L-8 77Z" fill="#e8f0f3" stroke="#9baebc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M17 52L27 62L-12 141L-23 133L8 75Z" fill="#f8fbfc" stroke="#9baebc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-21 61L15 133M22 61L-18 135" fill="none" stroke="#9baebc" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 83L-39 108M-60 117L-50 109M-56 129L-47 122M-38 138L-31 145M-28 158L-9 148M46 84L39 104M58 116L47 110M54 132L46 122M19 154L37 163" fill="none" stroke="#9baebc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 71Q-42 84-36 100M35 70Q42 87 37 100" fill="none" stroke="#9baebc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-37 136Q0 145 39 136L38 149Q0 156-38 148Z" fill="#293a44" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-4 147L-15 183L-2 187L7 151M8 146L11 184L24 181L17 146" fill="#31464e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-6 139L9 137L19 146L7 155L-8 149Z" fill="#42565e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 141Q0 149 35 141M-10 179L0 182M14 177L22 175" fill="none" stroke="#657780" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="-17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<ellipse cx="17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<path d="M-17 20Q-18 2 0 1Q19 2 18 22L15 40Q7 53-2 49Q-15 46-17 31Z" fill="url(#skin)" stroke="#b8a494" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 24L-19 13Q-15-2 0-3Q17-2 20 12L17 25L13 13Q4 18-11 11Z" fill="#37434a" stroke="#37434a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1 23L-2 32L2 33M-5 40Q1 42 6 39" fill="none" stroke="#b7a28f" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-10 25L-5 25M6 25L11 24" fill="none" stroke="#78726c" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g transform="translate(1325 275) scale(1.06)">
+<ellipse cx="0" cy="312" rx="83" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-48 288Q-54 298-48 307L-13 308Q-8 306-12 301L-25 292Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M22 291L11 302Q9 307 16 308L51 307Q56 302 45 289Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 161Q-48 196-47 224L-48 291Q-37 298-17 293L-7 237L0 201L8 239L16 293Q34 299 49 290L45 225Q43 188 37 161Z" fill="url(#giBlue)" stroke="#4e758a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-33 191Q-24 213-30 236M-18 214L-29 225M-46 246L-31 242M-42 281L-21 276M18 195Q31 217 26 236M21 219L38 229M27 257L46 262M19 281L36 284" fill="none" stroke="#4e758a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 165Q-13 180 0 179Q24 179 39 164" fill="none" stroke="#4e758a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-69 141Q-77 156-70 166Q-65 171-59 164L-54 151Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M62 139Q75 149 72 160Q69 170 63 166L53 154Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-66 154L-68 162M-62 154L-64 163M64 153L69 159M61 156L65 163" fill="none" stroke="#ad9684" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#giBlue)" stroke="#4e758a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#weave)" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-13 43L-16 63L0 83L18 61L12 43Z" fill="url(#skin)" stroke="#b59f8c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 53L-26 63L11 139L20 130L-8 77Z" fill="#c4d7e2" stroke="#4e758a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M17 52L27 62L-12 141L-23 133L8 75Z" fill="#a7c4d5" stroke="#4e758a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-21 61L15 133M22 61L-18 135" fill="none" stroke="#4e758a" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 83L-39 108M-60 117L-50 109M-56 129L-47 122M-38 138L-31 145M-28 158L-9 148M46 84L39 104M58 116L47 110M54 132L46 122M19 154L37 163" fill="none" stroke="#4e758a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 71Q-42 84-36 100M35 70Q42 87 37 100" fill="none" stroke="#4e758a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-37 136Q0 145 39 136L38 149Q0 156-38 148Z" fill="#293a44" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-4 147L-15 183L-2 187L7 151M8 146L11 184L24 181L17 146" fill="#31464e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-6 139L9 137L19 146L7 155L-8 149Z" fill="#42565e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 141Q0 149 35 141M-10 179L0 182M14 177L22 175" fill="none" stroke="#657780" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="-17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<ellipse cx="17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<path d="M-17 20Q-18 2 0 1Q19 2 18 22L15 40Q7 53-2 49Q-15 46-17 31Z" fill="url(#skin)" stroke="#b8a494" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 24L-19 13Q-15-2 0-3Q17-2 20 12L17 25L13 13Q4 18-11 11Z" fill="#37434a" stroke="#37434a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1 23L-2 32L2 33M-5 40Q1 42 6 39" fill="none" stroke="#b7a28f" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-10 25L-5 25M6 25L11 24" fill="none" stroke="#78726c" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<g transform="translate(1454 331) scale(0.83)">
+<ellipse cx="0" cy="312" rx="83" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-48 288Q-54 298-48 307L-13 308Q-8 306-12 301L-25 292Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M22 291L11 302Q9 307 16 308L51 307Q56 302 45 289Z" fill="url(#skin)" stroke="#9a8c80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 161Q-48 196-47 224L-48 291Q-37 298-17 293L-7 237L0 201L8 239L16 293Q34 299 49 290L45 225Q43 188 37 161Z" fill="url(#gi)" stroke="#9baebc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-33 191Q-24 213-30 236M-18 214L-29 225M-46 246L-31 242M-42 281L-21 276M18 195Q31 217 26 236M21 219L38 229M27 257L46 262M19 281L36 284" fill="none" stroke="#9baebc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-40 165Q-13 180 0 179Q24 179 39 164" fill="none" stroke="#9baebc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-69 141Q-77 156-70 166Q-65 171-59 164L-54 151Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M62 139Q75 149 72 160Q69 170 63 166L53 154Z" fill="url(#skin)" stroke="#a89281" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-66 154L-68 162M-62 154L-64 163M64 153L69 159M61 156L65 163" fill="none" stroke="#ad9684" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#gi)" stroke="#9baebc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-15 53Q-24 51-39 60Q-50 64-54 81L-75 141Q-66 152-50 151L-34 120L-39 167Q-23 177-2 175L5 168Q22 177 43 169L36 119L52 151Q63 150 75 139L55 80Q51 65 38 61L17 52Z" fill="url(#weave)" stroke="none" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-13 43L-16 63L0 83L18 61L12 43Z" fill="url(#skin)" stroke="#b59f8c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 53L-26 63L11 139L20 130L-8 77Z" fill="#e8f0f3" stroke="#9baebc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M17 52L27 62L-12 141L-23 133L8 75Z" fill="#f8fbfc" stroke="#9baebc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-21 61L15 133M22 61L-18 135" fill="none" stroke="#9baebc" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 83L-39 108M-60 117L-50 109M-56 129L-47 122M-38 138L-31 145M-28 158L-9 148M46 84L39 104M58 116L47 110M54 132L46 122M19 154L37 163" fill="none" stroke="#9baebc" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 71Q-42 84-36 100M35 70Q42 87 37 100" fill="none" stroke="#9baebc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-37 136Q0 145 39 136L38 149Q0 156-38 148Z" fill="#293a44" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-4 147L-15 183L-2 187L7 151M8 146L11 184L24 181L17 146" fill="#31464e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-6 139L9 137L19 146L7 155L-8 149Z" fill="#42565e" stroke="#1d2d34" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-34 141Q0 149 35 141M-10 179L0 182M14 177L22 175" fill="none" stroke="#657780" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<ellipse cx="-17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<ellipse cx="17" cy="28" rx="4" ry="8" fill="url(#skin)" stroke="#ad9c90" stroke-width="0.8" />
+<path d="M-17 20Q-18 2 0 1Q19 2 18 22L15 40Q7 53-2 49Q-15 46-17 31Z" fill="url(#skin)" stroke="#b8a494" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-18 24L-19 13Q-15-2 0-3Q17-2 20 12L17 25L13 13Q4 18-11 11Z" fill="#37434a" stroke="#37434a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M1 23L-2 32L2 33M-5 40Q1 42 6 39" fill="none" stroke="#b7a28f" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-10 25L-5 25M6 25L11 24" fill="none" stroke="#78726c" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="1200" y="695" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700" fill="#273C49" text-anchor="middle"><tspan x="1200" dy="0">One athlete · one competition</tspan></text><g transform="translate(935 855) scale(0.77)">
+<ellipse cx="0" cy="26" rx="100" ry="14" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-90-5L65-5L92 15L79 29L-88 29L-103 13Z" fill="url(#steel)" stroke="#728892" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-90-5L65-5L88 13L-103 13Z" fill="#e3ebee" stroke="#8d9ea8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-28" y="-1" width="50" height="12" rx="2" fill="#678778" stroke="#526e61" stroke-width="1" />
+<text x="-3" y="8" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#eaf3df" text-anchor="middle">
+<tspan x="-3" dy="0">kg</tspan>
+</text>
+<path d="M-56 -1L-36 -1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 1L-36 1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 3L-36 3" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 5L-36 5" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 7L-36 7" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 -1L56 -1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 1L56 1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 3L56 3" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 5L56 5" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 7L56 7" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="935" y="939" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="935" dy="0">Before</tspan><tspan x="935" dy="37.800000000000004">reduction</tspan></text><text x="935" y="1042" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="400" fill="#397EA4" text-anchor="middle" font-style="italic"><tspan x="935" dy="0">m</tspan><tspan font-size="27.3" dy="9.24">0</tspan></text><g transform="translate(1200 855) scale(0.77)">
+<ellipse cx="0" cy="26" rx="100" ry="14" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-90-5L65-5L92 15L79 29L-88 29L-103 13Z" fill="url(#steel)" stroke="#728892" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-90-5L65-5L88 13L-103 13Z" fill="#e3ebee" stroke="#8d9ea8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-28" y="-1" width="50" height="12" rx="2" fill="#678778" stroke="#526e61" stroke-width="1" />
+<text x="-3" y="8" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#eaf3df" text-anchor="middle">
+<tspan x="-3" dy="0">kg</tspan>
+</text>
+<path d="M-56 -1L-36 -1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 1L-36 1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 3L-36 3" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 5L-36 5" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 7L-36 7" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 -1L56 -1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 1L56 1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 3L56 3" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 5L56 5" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 7L56 7" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="1200" y="939" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="1200" dy="0">Official</tspan><tspan x="1200" dy="37.800000000000004">weigh-in</tspan></text><text x="1200" y="1042" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="400" fill="#397EA4" text-anchor="middle" font-style="italic"><tspan x="1200" dy="0">m</tspan><tspan font-size="27.3" dy="9.24">w</tspan></text><g transform="translate(1465 855) scale(0.77)">
+<ellipse cx="0" cy="26" rx="100" ry="14" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-90-5L65-5L92 15L79 29L-88 29L-103 13Z" fill="url(#steel)" stroke="#728892" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-90-5L65-5L88 13L-103 13Z" fill="#e3ebee" stroke="#8d9ea8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-28" y="-1" width="50" height="12" rx="2" fill="#678778" stroke="#526e61" stroke-width="1" />
+<text x="-3" y="8" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#eaf3df" text-anchor="middle">
+<tspan x="-3" dy="0">kg</tspan>
+</text>
+<path d="M-56 -1L-36 -1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 1L-36 1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 3L-36 3" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 5L-36 5" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-56 7L-36 7" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 -1L56 -1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 1L56 1" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 3L56 3" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 5L56 5" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M36 7L56 7" fill="none" stroke="#bacbd1" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="1465" y="939" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="1465" dy="0">Specified</tspan><tspan x="1465" dy="37.800000000000004">next-day check</tspan></text><text x="1465" y="1042" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="400" fill="#AF7D34" text-anchor="middle" font-style="italic"><tspan x="1465" dy="0">m</tspan><tspan font-size="27.3" dy="9.24">c</tspan></text><path d="M1015 865L1110 865" fill="none" stroke="#81949E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" /><path d="M1280 865L1375 865" fill="none" stroke="#81949E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" /><text x="1065" y="815" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" fill="#397EA4" text-anchor="middle"><tspan x="1065" dy="0">Loss</tspan></text><text x="1330" y="815" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" fill="#AF7D34" text-anchor="middle"><tspan x="1330" dy="0">Regain</tspan></text><g transform="translate(960 1190) scale(0.73)">
+<path d="M-49-46L51-46L51 52L-49 52Z" fill="url(#paper)" stroke="#90a6b1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-49" y="-46" width="100" height="25" rx="0" fill="#83a8ba" stroke="none" stroke-width="2" />
+<path d="M-27-55V-33" fill="none" stroke="#5b7c8e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M28-55V-33" fill="none" stroke="#5b7c8e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+<text x="1" y="28" font-family="Arial, Helvetica, sans-serif" font-size="41" font-weight="700" fill="#347fa8" text-anchor="middle">
+<tspan x="1" dy="0">h</tspan>
+</text>
+</g>
+<text x="1050" y="1175" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="400" fill="#273C49" text-anchor="start"><tspan x="1050" dy="0">Hours to the next-day check</tspan></text><text x="1050" y="1220" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#617781" text-anchor="start"><tspan x="1050" dy="0">Specified at prediction</tspan></text><path d="M1490 565L1640 565" fill="none" stroke="#81949E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" /><text x="2000" y="235" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#876AA9" text-anchor="middle"><tspan x="2000" dy="0">Coach</tspan></text><text x="2000" y="295" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="2000" dy="0">Prediction after official weigh-in</tspan></text><g transform="translate(2000 625) scale(1.8)">
+<ellipse cx="0" cy="136" rx="183" ry="20" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-154-104Q-153-113-143-113H142Q153-113 154-104L151 82H-153Z" fill="#6d8491" stroke="#3e5b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-141" y="-99" width="281" height="169" rx="2" fill="url(#screen)" stroke="#91a6b0" stroke-width="1" />
+<circle cx="0" cy="-107" r="1.8" fill="#cfdae0" stroke="none" stroke-width="2" />
+<path d="M-153 83L151 83L188 126Q182 135 168 134L-171 134Q-186 135-191 126Z" fill="url(#steel)" stroke="#81949e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-130 90H128L151 115H-155Z" fill="#90a4ad" stroke="#758b97" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-128 93.0L128 93.0" fill="none" stroke="#e0e8eb" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-131 97.2L131 97.2" fill="none" stroke="#e0e8eb" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-134 101.4L134 101.4" fill="none" stroke="#e0e8eb" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-137 105.6L137 105.6" fill="none" stroke="#e0e8eb" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-140 109.8L140 109.8" fill="none" stroke="#e0e8eb" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-122 92L-140 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-107 92L-123 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-92 92L-106 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-77 92L-89 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-62 92L-72 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-47 92L-55 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-32 92L-38 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-17 92L-21 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-2 92L-4 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M13 92L13 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M28 92L30 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M43 92L47 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M58 92L64 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M73 92L81 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M88 92L98 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M103 92L115 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M118 92L132 115" fill="none" stroke="#d6e1e7" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-36 118H36L42 128H-44Z" fill="#bccbd1" stroke="#8da1ad" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="2000" y="510" font-family="Arial, Helvetica, sans-serif" font-size="33" font-weight="700" fill="#876AA9" text-anchor="middle"><tspan x="2000" dy="0">Next-day body mass</tspan></text><text x="2000" y="592" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="400" fill="#876AA9" text-anchor="middle" font-style="italic"><tspan x="2000" dy="0">m</tspan><tspan font-size="41.6" dy="14.08">c</tspan></text><text x="2000" y="660" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="2000" dy="0">Regain + uncertainty</tspan></text><text x="2000" y="708" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="2000" dy="0">Probability above the</tspan></text><text x="2000" y="741" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="400" fill="#273C49" text-anchor="middle"><tspan x="2000" dy="0">IJF random weigh-in limit</tspan></text><g transform="translate(1810 1130) scale(0.65)">
+<ellipse cx="0" cy="104" rx="82" ry="13" fill="url(#shadow)" stroke="none" stroke-width="2" />
+<path d="M-55-75L72-52L40 108L-79 85Z" fill="#dbe5e9" stroke="#b4c4cc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-52-93L72-82L62 98L-63 89Z" fill="#eff4f6" stroke="#a5bac5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-67-100L49-100L67-81L67 87L-67 87Z" fill="url(#paper)" stroke="#879fad" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M49-100L49-81L67-81" fill="#d5e2e9" stroke="#879fad" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-49" y="-75" width="74" height="9" rx="1" fill="#347fa8" stroke="none" stroke-width="2" />
+<path d="M-49 -57L46 -57" fill="none" stroke="#8da2ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-49 -49L25 -49" fill="none" stroke="#bccbd2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 -28L-46 18" fill="none" stroke="#91a6b2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-46 18L43 18" fill="none" stroke="#91a6b2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+<rect x="-34" y="0" width="9" height="17" rx="0" fill="#b5d4db" stroke="none" stroke-width="2" />
+<rect x="-19" y="-12" width="9" height="29" rx="0" fill="#8ab7c7" stroke="none" stroke-width="2" />
+<rect x="-4" y="-23" width="9" height="40" rx="0" fill="#548fa9" stroke="none" stroke-width="2" />
+<rect x="11" y="-14" width="9" height="31" rx="0" fill="#82abbc" stroke="none" stroke-width="2" />
+<rect x="26" y="-5" width="9" height="22" rx="0" fill="#aecbd4" stroke="none" stroke-width="2" />
+<path d="M-48 37L48 37" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 45L48 45" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 53L23 53" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 66L48 66" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M-48 74L48 74" fill="none" stroke="#aabec8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+<text x="1920" y="1105" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#AF7D34" text-anchor="start"><tspan x="1920" dy="0">Random-check limit</tspan></text><text x="1920" y="1160" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400" fill="#AF7D34" text-anchor="start"><tspan x="1920" dy="0">IJF, 2026</tspan></text><path d="M1845 1035L1845 939" fill="none" stroke="#81949E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)" /></svg>
