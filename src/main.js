@@ -156,9 +156,9 @@ reader.addEventListener('click', event => {
 });
 
 const openingSection = document.querySelector('#home');
+let updateFrame = 0;
 const opening = initOpening({ container: document.querySelector('#opening-art'), loader: document.querySelector('#loader'), onReady: () => scheduleUpdate() });
 const diagramStages = initDiagramStages(diagramScenes);
-let updateFrame = 0;
 
 function updateScroll() {
   updateFrame = 0;
@@ -167,7 +167,7 @@ function updateScroll() {
   const progress = Math.max(0, Math.min(1, -rect.top / Math.max(1, rect.height - height)));
   opening.update(progress);
   diagramStages.update();
-  document.querySelector('.site-header').classList.toggle('has-content', document.querySelector('#introduction').getBoundingClientRect().top <= 100);
+  document.querySelector('.site-header').classList.toggle('has-content', document.querySelector('#framework').getBoundingClientRect().top <= 100);
 }
 function scheduleUpdate() {
   if (!updateFrame) updateFrame = requestAnimationFrame(updateScroll);

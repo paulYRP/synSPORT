@@ -1,4 +1,4 @@
-import { test, expect, openSite, openChapter, scrollDiagram, cameraBox, expectCaptionMatches } from './helpers.js';
+import { test, expect, openSite, openChapter, scrollDiagram, scrollOpening, cameraBox, layerTransforms, expectCaptionMatches } from './helpers.js';
 
 test('the deployed site serves its media and both chapters', async ({ page, request, baseURL }) => {
   test.setTimeout(150_000);
@@ -13,8 +13,15 @@ test('the deployed site serves its media and both chapters', async ({ page, requ
     await expect(page).toHaveTitle(/synSPORT|QUT|Judo/i);
   } else await openSite(page);
   await expect.poll(() => page.evaluate(() => window.synsportRevision)).toBeTruthy();
-  await expect(page.locator('#introduction p')).toHaveText('Synthetic data generation applied to sport');
+  await expect(page.locator('#introduction')).toHaveCount(0);
+  await expect(page.locator('#home #site-title')).toHaveText('synSPORT.');
+  await expect(page.locator('#home #opening-identity')).toContainText('Synthetic data generation applied to sport');
   await expect(page.locator('#chapter-position')).toHaveCount(0);
+  await scrollOpening(page, .69);
+  await expect(page.locator('#opening-art')).toHaveAttribute('data-phase', 'phrase');
+  await scrollOpening(page, .95);
+  await expect(page.locator('#opening-art')).toHaveAttribute('data-phase', 'identity');
+  await expect(page.locator('#opening-identity')).toBeInViewport();
   for (const asset of ['media/motion.json', 'media/judoka.png', 'media/throw.mp4', 'fonts/roboto.css', 'figures/framework.svg', 'figures/objective.svg']) {
     const response = await request.get(new URL(asset, baseURL).href, { headers: { Range: 'bytes=0-1023' } });
     expect(response.ok(), `${asset} should be available on the deployed site`).toBeTruthy();
@@ -23,13 +30,15 @@ test('the deployed site serves its media and both chapters', async ({ page, requ
   for (const id of ['framework', 'objective']) {
     const section = await scrollDiagram(page, id, 0);
     const overview = await cameraBox(section);
+    const fullComposition = await layerTransforms(section);
     expect(await section.locator('.diagram-viewport > svg path').count()).toBeGreaterThan(20);
     await scrollDiagram(page, id, .4);
     await expectCaptionMatches(section);
-    const focused = await cameraBox(section);
-    expect(focused[2] * focused[3]).toBeLessThan(overview[2] * overview[3]);
+    await expect(section.locator('.diagram-layer[data-active="true"]')).toHaveCount(1);
+    expect(await layerTransforms(section)).not.toEqual(fullComposition);
     await scrollDiagram(page, id, 1);
     expect(await cameraBox(section)).toEqual(overview);
+    expect(await layerTransforms(section)).toEqual(fullComposition);
     await scrollDiagram(page, id, 0);
     expect(await cameraBox(section)).toEqual(overview);
     await openChapter(page, id);

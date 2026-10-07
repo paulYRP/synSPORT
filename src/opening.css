@@ -20,4 +20,4 @@
 .opening-continue span{margin-left:24px}
 .opening-continue:focus-visible{outline:2px solid currentColor;outline-offset:6px}
 @media(max-width:700px){.opening-portrait img{height:112%;top:9%}.opening-belt-fallback{width:180px}.opening-loading-label{top:calc(50% + 115px)}.opening-load-line{top:calc(50% + 147px)}}
-@media(prefers-reduced-motion:reduce){.opening-portrait,.opening-contours,.opening-halo{transform:none}.opening-loader,.opening-load-line span{transition:none}.opening-portrait{opacity:1}}
+@media(prefers-reduced-motion:reduce){.opening-portrait,.opening-contours,.opening-halo{transform:none}.opening-loader,.opening-load-line span{transition:none}.opening-portrait{opacity:var(--opening-portrait);mask-image:linear-gradient(#000 35%,transparent 86%)}}

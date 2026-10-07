@@ -1,4 +1,4 @@
-import { test, expect, openSite, openChapter, scrollDiagram, cameraBox, expectCaptionMatches, expectChapterEntry } from './helpers.js';
+import { test, expect, openSite, openChapter, scrollDiagram, scrollOpening, cameraBox, layerTransforms, expectCaptionMatches, expectChapterEntry } from './helpers.js';
 
 test('the published-base opening loads and scrolls through readable chapters', async ({ page }) => {
   await openSite(page);
@@ -63,12 +63,44 @@ test('reduced motion keeps the full narrative accessible', async ({ page }, test
   }
 });
 
-test('the introduction contains the exact title and tagline without a centre header label', async ({ page }) => {
+test('the opening contains the title and phrase without a separate introduction or centre header label', async ({ page }) => {
   await openSite(page);
-  await page.locator('#introduction').scrollIntoViewIfNeeded();
-  await expect(page.locator('#introduction h1')).toHaveText('synSPORT.');
-  await expect(page.locator('#introduction p')).toHaveText('Synthetic data generation applied to sport');
+  await expect(page.locator('#introduction')).toHaveCount(0);
+  await expect(page.locator('#home #site-title')).toHaveText('synSPORT.');
+  await expect(page.locator('#home #opening-identity')).toContainText('Synthetic data generation applied to sport');
   await expect(page.locator('#chapter-position')).toHaveCount(0);
+});
+
+test('the same opening scene transforms the phrase into the logo and reverses with scrolling', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === 'reduced-motion', 'Reduced motion presents the complete identity without animated typography.');
+  await openSite(page);
+  const artwork = await scrollOpening(page, .69);
+  const identity = page.locator('#opening-identity');
+  await expect(artwork).toHaveAttribute('data-phase', 'phrase');
+  await expect(identity).toBeInViewport();
+  for (const selector of ['.identity-tail', '.identity-data', '.identity-applied']) {
+    await expect.poll(() => identity.locator(selector).evaluate(node => Number(getComputedStyle(node).opacity))).toBeGreaterThan(.98);
+  }
+  await scrollOpening(page, .81);
+  await expect(artwork).toHaveAttribute('data-phase', 'transform');
+  const middle = await identity.locator('.identity-syn,.identity-sport').evaluateAll(nodes => nodes.map(node => ({ transform: getComputedStyle(node).transform, size: getComputedStyle(node).fontSize })));
+  await scrollOpening(page, .95);
+  await expect(artwork).toHaveAttribute('data-phase', 'identity');
+  await expect(identity).toBeInViewport();
+  for (const selector of ['.identity-tail', '.identity-data', '.identity-applied']) {
+    await expect.poll(() => identity.locator(selector).evaluate(node => Number(getComputedStyle(node).opacity))).toBeLessThan(.02);
+  }
+  await expect.poll(() => identity.locator('.identity-dot').evaluate(node => Number(getComputedStyle(node).opacity))).toBeGreaterThan(.98);
+  await expect(identity.locator('.identity-syn .identity-target')).toHaveText('syn');
+  await expect(identity.locator('.identity-sport .identity-target')).toHaveText('SPORT');
+  for (const target of await identity.locator('.identity-target').all()) await expect(target).toHaveCSS('opacity', '1');
+  await scrollOpening(page, .81);
+  const reverse = await identity.locator('.identity-syn,.identity-sport').evaluateAll(nodes => nodes.map(node => ({ transform: getComputedStyle(node).transform, size: getComputedStyle(node).fontSize })));
+  expect(reverse, 'Reversing should restore the same typographic composition').toEqual(middle);
+  await scrollOpening(page, .69);
+  await expect(artwork).toHaveAttribute('data-phase', 'phrase');
+  const sizes = await page.evaluate(() => ({ width: document.documentElement.scrollWidth, viewport: innerWidth }));
+  expect(sizes.width).toBeLessThanOrEqual(sizes.viewport + 1);
 });
 
 test('the camera displays the published source SVG artwork', async ({ page, request, baseURL }) => {
@@ -94,35 +126,62 @@ test('the camera displays the published source SVG artwork', async ({ page, requ
     expect(fidelity.samePaths, 'Camera artwork must retain the scientific figure geometry').toBeTruthy();
     expect(fidelity.sameImages, 'Embedded source figures must remain in the camera').toBeTruthy();
     expect(fidelity.sameText, 'Original diagram labels must remain intact').toBeTruthy();
+    await expect(section.locator('.diagram-source')).toHaveCount(1);
+    const references = await section.locator('.diagram-layer use').evaluateAll(nodes => nodes.map(node => {
+      const reference = node.getAttribute('href') || node.getAttributeNS('http://www.w3.org/1999/xlink', 'href');
+      const target = reference?.startsWith('#') ? document.getElementById(reference.slice(1)) : null;
+      return Boolean(target?.closest('.diagram-source'));
+    }));
+    expect(references.length, 'Separated components should reuse the source diagram geometry').toBeGreaterThan(3);
+    expect(references.every(Boolean), 'Every separated component must refer to the intact source figure').toBeTruthy();
   }
 });
 
-test('scrolling follows the diagrams and restores their overviews in both directions', async ({ page }, testInfo) => {
+test('scrolling pairs every diagram scene with its explanation and restores the overview', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === 'reduced-motion', 'Reduced motion uses complete static figures and all captions.');
   test.setTimeout(90_000);
   await openSite(page);
   for (const id of ['framework', 'objective']) {
     const section = await scrollDiagram(page, id, 0);
     const overview = await cameraBox(section);
+    await expect(section).toHaveAttribute('data-layout', 'overview');
     const views = Number(await section.getAttribute('data-views'));
     expect(views).toBeGreaterThanOrEqual(6);
-    const midpoint = Math.floor((views - 1) / 2);
-    let focused;
     for (let view = 0; view < views; view++) {
       await scrollDiagram(page, id, view / (views - 1));
       await expectCaptionMatches(section);
-      if (view === midpoint) focused = await cameraBox(section);
     }
-    expect(focused[2] * focused[3], 'A focused panel should be larger on screen than the overview').toBeLessThan(overview[2] * overview[3] * .7);
     expect(await cameraBox(section), 'The chapter should end by reconnecting the complete diagram').toEqual(overview);
-    await scrollDiagram(page, id, midpoint / (views - 1));
-    await expectCaptionMatches(section);
-    const reversed = await cameraBox(section);
-    reversed.forEach((value, index) => expect(value).toBeCloseTo(focused[index], 1));
     await scrollDiagram(page, id, .42857);
     await expectCaptionMatches(section);
     await scrollDiagram(page, id, 0);
     expect(await cameraBox(section), 'Scrolling up should restore the original overview').toEqual(overview);
+    await expect(section).toHaveAttribute('data-layout', 'overview');
+  }
+});
+
+test('diagram components separate with their labels and return to the same arrangement', async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === 'reduced-motion', 'Reduced motion retains the source diagram without separation.');
+  await openSite(page);
+  for (const id of ['framework', 'objective']) {
+    const section = await scrollDiagram(page, id, 0);
+    const overview = await layerTransforms(section);
+    expect(overview.length, 'A chapter should contain multiple independently positioned components').toBeGreaterThan(3);
+    await scrollDiagram(page, id, .4);
+    await expectCaptionMatches(section);
+    const focused = await layerTransforms(section);
+    expect(focused, 'Focusing should move the components out of the full-figure arrangement').not.toEqual(overview);
+    expect(new Set(focused.map(layer => layer.transform)).size, 'Components should occupy distinct positions').toBeGreaterThan(2);
+    const active = section.locator('.diagram-layer[data-active="true"]');
+    await expect(active).toHaveCount(1);
+    await expect(active).toHaveAttribute('data-layer-key', await section.getAttribute('data-active-layer'));
+    await scrollDiagram(page, id, .78);
+    expect(await layerTransforms(section)).not.toEqual(focused);
+    await scrollDiagram(page, id, .4);
+    expect(await layerTransforms(section), 'Reverse scrolling should restore component positions and focus').toEqual(focused);
+    await scrollDiagram(page, id, 1);
+    await expect(section).toHaveAttribute('data-layout', 'overview');
+    expect(await layerTransforms(section), 'The final view should reconnect the source composition').toEqual(overview);
   }
 });
 
@@ -200,12 +259,8 @@ test('scrolling seeks decoded throw frames forward and back', async ({ page }, t
   const artwork = page.locator('#opening-art');
   await expect(artwork).toHaveAttribute('data-renderer', 'webgl');
   const frames = [];
-  for (const fraction of [0.5, 0.85, 0.5]) {
-    await page.evaluate(value => {
-      const home = document.getElementById('home');
-      scrollTo({ top: home.offsetTop + (home.offsetHeight - innerHeight) * value, behavior: 'instant' });
-    }, fraction);
-    await expect.poll(async () => Number(await artwork.getAttribute('data-progress'))).toBeCloseTo(fraction, 2);
+  for (const fraction of [0.4, 0.49, 0.4]) {
+    await scrollOpening(page, fraction);
     await expect.poll(async () => artwork.evaluate(element => {
       const frame = Number(element.dataset.filmFrame);
       const target = Number(element.dataset.targetFrame);

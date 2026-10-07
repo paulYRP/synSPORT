@@ -58,7 +58,19 @@ export async function scrollDiagram(page, id, fraction) {
     scrollTo({ top: scrollY + rect.top + (rect.height - innerHeight) * progress, behavior: 'instant' });
   }, fraction);
   await expect.poll(async () => Number(await section.getAttribute('data-progress'))).toBeCloseTo(fraction, 3);
+  await expect(section).toHaveAttribute('data-settled', 'true');
   return section;
+}
+
+export async function scrollOpening(page, fraction) {
+  const artwork = page.locator('#opening-art');
+  await page.locator('#home').evaluate((element, progress) => {
+    const rect = element.getBoundingClientRect();
+    scrollTo({ top: scrollY + rect.top + (rect.height - innerHeight) * progress, behavior: 'instant' });
+  }, fraction);
+  await expect.poll(async () => Number(await artwork.getAttribute('data-progress'))).toBeCloseTo(fraction, 3);
+  await expect(artwork).toHaveAttribute('data-settled', 'true');
+  return artwork;
 }
 
 export async function cameraBox(section) {
@@ -66,6 +78,14 @@ export async function cameraBox(section) {
     const { x, y, width, height } = svg.viewBox.baseVal;
     return [x, y, width, height];
   });
+}
+
+export async function layerTransforms(section) {
+  return section.locator('.diagram-layer').evaluateAll(layers => layers.map(layer => ({
+    key: layer.dataset.layerKey,
+    transform: layer.getAttribute('transform'),
+    active: layer.dataset.active,
+  })));
 }
 
 export async function expectCaptionMatches(section) {

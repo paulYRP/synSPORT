@@ -1,19 +1,12 @@
 import './diagram-stage.css';
+import { diagramLayers } from '../content/diagram-layers.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
 const clamp = value => Math.max(0, Math.min(1, value));
 const ease = value => { const t = clamp(value); return t * t * (3 - 2 * t); };
 const range = (start, end, value) => ease((value - start) / (end - start));
 const mix = (a, b, t) => a + (b - a) * t;
-
-// Interpolate centres and scale. The SVG's meet setting preserves the source
-// aspect ratio; its artwork clip prevents neighbouring panels entering the crop.
-function cameraBetween(a, b, amount) {
-  const width = Math.exp(mix(Math.log(a[2]), Math.log(b[2]), amount));
-  const height = Math.exp(mix(Math.log(a[3]), Math.log(b[3]), amount));
-  return [mix(a[0] + a[2] / 2, b[0] + b[2] / 2, amount) - width / 2,
-    mix(a[1] + a[3] / 2, b[1] + b[3] / 2, amount) - height / 2, width, height];
-}
+const svgNode = name => document.createElementNS(SVG, name);
 
 function prepareSVG(source, key, label) {
   const xml = source.replace(/<!DOCTYPE[^>[]*(?:\[[\s\S]*?\])?\s*>/gi, '');
@@ -53,19 +46,72 @@ function prepareSVG(source, key, label) {
   element.setAttribute('aria-label', label);
   element.setAttribute('focusable', 'false');
   element.classList.add('diagram-artwork');
-  let defs = [...element.children].find(node => node.localName === 'defs');
-  if (!defs) { defs = document.createElementNS(SVG, 'defs'); element.prepend(defs); }
-  const clip = document.createElementNS(SVG, 'clipPath');
-  clip.id = `${prefix}camera-crop`;
-  clip.setAttribute('clipPathUnits', 'userSpaceOnUse');
-  const crop = document.createElementNS(SVG, 'rect');
-  clip.append(crop);
-  defs.append(clip);
-  const artwork = document.createElementNS(SVG, 'g');
-  artwork.setAttribute('clip-path', `url(#${clip.id})`);
-  [...element.children].filter(node => !['defs', 'title', 'desc', 'style'].includes(node.localName)).forEach(node => artwork.append(node));
-  element.append(artwork);
-  return { element, crop };
+
+  const originalChildren = [...element.children];
+  const axes = element.querySelector(`#${prefix}axes_1`);
+  const axesChildren = axes ? [...axes.children] : [];
+  const sourceGroup = svgNode('g');
+  sourceGroup.classList.add('diagram-source');
+  originalChildren.filter(node => !['defs', 'title', 'desc', 'style'].includes(node.localName)).forEach(node => sourceGroup.append(node));
+  element.append(sourceGroup);
+
+  const links = svgNode('g');
+  links.classList.add('diagram-relations');
+  links.setAttribute('aria-hidden', 'true');
+  element.append(links);
+  const markers = svgNode('defs');
+  const arrow = svgNode('marker');
+  arrow.id = `${prefix}relation-arrow`;
+  arrow.setAttribute('viewBox', '0 0 8 8');
+  arrow.setAttribute('refX', '7');
+  arrow.setAttribute('refY', '4');
+  arrow.setAttribute('markerWidth', '5');
+  arrow.setAttribute('markerHeight', '5');
+  arrow.setAttribute('orient', 'auto');
+  const tip = svgNode('polygon');
+  tip.setAttribute('points', '0,0 8,4 0,8');
+  tip.setAttribute('fill', '#667b6d');
+  arrow.append(tip);
+  markers.append(arrow);
+  element.append(markers);
+  const layers = (diagramLayers[key] || []).map((definition, index) => {
+    const nodes = definition.ids ? definition.ids.map(id => element.querySelector(`#${prefix}${id}`))
+      : definition.axesChildren ? definition.axesChildren.map(i => axesChildren[i])
+        : definition.children.map(i => originalChildren[i]);
+    if (nodes.some(node => !node)) throw new Error('The diagram structure does not match its published artwork.');
+    const group = svgNode('g');
+    group.classList.add('diagram-layer');
+    group.dataset.layerKey = definition.key;
+    group.dataset.sourceCount = String(nodes.length);
+    group.setAttribute('aria-label', definition.label);
+    group.setAttribute('aria-hidden', 'true');
+    for (const [nodeIndex, node] of nodes.entries()) {
+      if (!node.id) node.id = `${prefix}component-${index}-${nodeIndex}`;
+      const reference = svgNode('use');
+      reference.setAttribute('href', `#${node.id}`);
+      group.append(reference);
+    }
+    element.append(group);
+    return { ...definition, group, index, pose: [0, 0, 1], opacity: 0 };
+  });
+  // Retain only relationships that are explicit in the published diagrams.
+  // Other source brackets and mappings return in the complete overview.
+  const connections = key === 'framework'
+    ? ['objective', 'structure', 'generation', 'constraints', 'utility'].map((name, index) => [
+      `dimension-${name}`, `dimension-${['structure', 'generation', 'constraints', 'utility', 'risk'][index]}`
+    ])
+    : [['questionnaire', 'synthetic-records'], ['measurements', 'synthetic-records'], ['knowledge', 'synthetic-records'], ['synthetic-records', 'coach-output'], ['regulatory-comparison', 'coach-output']];
+  const relationships = connections.map(([from, to]) => {
+    const line = svgNode('polyline');
+    line.dataset.from = from;
+    line.dataset.to = to;
+    line.setAttribute('fill', 'none');
+    line.setAttribute('vector-effect', 'non-scaling-stroke');
+    line.setAttribute('marker-end', `url(#${arrow.id})`);
+    links.append(line);
+    return { from, to, line };
+  });
+  return { element, source: sourceGroup, layers, links, relationships };
 }
 
 export function initDiagramStages(configs) {
@@ -84,19 +130,7 @@ export function initDiagramStages(configs) {
     if (!section || !viewport) return null;
     const captions = [...section.querySelectorAll('.diagram-caption')];
     const copy = section.querySelector('.diagram-copy');
-    let transcript = section.querySelector('.diagram-transcript');
-    if (!transcript) {
-      transcript = document.createElement('div');
-      transcript.className = 'diagram-transcript';
-      for (const scene of config.scenes) {
-        const heading = document.createElement('h3');
-        const body = document.createElement('p');
-        heading.textContent = scene.title;
-        body.textContent = scene.body;
-        transcript.append(heading, body);
-      }
-      section.append(transcript);
-    }
+    const transcript = section.querySelector('.diagram-transcript');
     section.classList.add('diagram-chapter');
     section.dataset.ready = 'loading';
     section.dataset.scenes = String(config.scenes.length);
@@ -106,19 +140,18 @@ export function initDiagramStages(configs) {
     return stage;
   }).filter(Boolean);
 
+  function isStatic(stage) { return reduced.matches || landscape.matches || stage.failed || stage.overflow; }
+
   function configure(stage) {
-    stage.frames = stage.config.scenes.flatMap((scene, index) => {
-      const views = mobile.matches && scene.mobileViews?.length ? scene.mobileViews : [scene.viewBox];
-      return views.map((view, subview) => ({ box: Array.isArray(view) ? view : view.viewBox, scene: index, subview, focus: (!Array.isArray(view) && view.focus) || scene.focus }));
-    });
-    const staticView = reduced.matches || landscape.matches || stage.failed || stage.overflow;
+    stage.frames = stage.config.scenes.flatMap((scene, sceneIndex) => (scene.layers || [null]).map(layer => ({ scene: sceneIndex, layer })));
+    const staticView = isStatic(stage);
     stage.section.dataset.reduced = String(staticView);
     stage.section.dataset.staticReason = reduced.matches ? 'reduced-motion' : landscape.matches ? 'short-landscape' : stage.failed ? 'figure-error' : stage.overflow ? 'text-size' : '';
     stage.section.dataset.views = String(stage.frames.length);
-    stage.section.style.setProperty('--diagram-spans', String(stage.frames.length));
-    stage.section.style.setProperty('--diagram-step-height', mobile.matches ? '88svh' : '78svh');
+    stage.section.style.setProperty('--diagram-spans', String(stage.frames.length - 1));
+    stage.section.style.setProperty('--diagram-step-height', mobile.matches ? '78svh' : '69svh');
     stage.copy?.setAttribute('aria-hidden', String(!staticView));
-    stage.transcript.hidden = staticView;
+    if (stage.transcript) stage.transcript.hidden = staticView;
     for (const caption of stage.captions) {
       caption.setAttribute('aria-hidden', String(!staticView));
       caption.inert = !staticView;
@@ -126,31 +159,89 @@ export function initDiagramStages(configs) {
   }
 
   function paint(stage) {
-    const staticView = reduced.matches || landscape.matches || stage.failed || stage.overflow;
+    const staticView = isStatic(stage);
     const position = clamp(stage.progress) * (stage.frames.length - 1);
     const first = Math.min(stage.frames.length - 1, Math.floor(position));
     const second = Math.min(stage.frames.length - 1, first + 1);
     const phase = position - first;
     const a = stage.frames[first], b = stage.frames[second];
-    const cameraProgress = range(.26, .82, phase);
-    const useNext = phase > .60;
-    const focusFrame = useNext ? b : a;
+    // Hold each arrangement while it is read, then travel to the next one.
+    const travel = range(.22, .83, phase);
+    const focusFrame = phase > .56 ? b : a;
     const active = focusFrame.scene;
-    const box = staticView ? stage.config.fullViewBox : cameraBetween(a.box, b.box, cameraProgress);
-    const serialized = box.map(value => value.toFixed(2)).join(' ');
+    let separation = a.layer ? 1 : 0;
+    separation = mix(separation, b.layer ? 1 : 0, travel);
+    if (staticView) separation = 0;
+    const fullBox = stage.config.fullViewBox;
+    const [,, width, sourceHeight] = fullBox;
+    // The separated scene fills the available viewport without stretching art.
+    const height = width * stage.viewport.clientHeight / Math.max(1, stage.viewport.clientWidth);
+    const cameraHeight = mix(sourceHeight, height, separation);
+    const serialized = [0, 0, width, cameraHeight].map(value => Number(value.toFixed(3))).join(' ');
+
     if (stage.svg) {
-      stage.svg.element.setAttribute('viewBox', serialized);
-      ['x', 'y', 'width', 'height'].forEach((name, index) => stage.svg.crop.setAttribute(name, String(box[index])));
+      const { element, source, layers, links, relationships } = stage.svg;
+      element.setAttribute('viewBox', serialized);
+      source.style.opacity = String(1 - range(0, .42, separation));
+      const layerIndex = key => layers.findIndex(layer => layer.key === key);
+      const startIndex = a.layer ? layerIndex(a.layer) : b.layer ? layerIndex(b.layer) : 0;
+      const endIndex = b.layer ? layerIndex(b.layer) : startIndex;
+      const currentIndex = mix(startIndex, endIndex, travel);
+      const sizes = layers.map(layer => {
+        const scale = Math.min(width * .84 / layer.box[2], height * (mobile.matches ? .80 : .68) / layer.box[3]);
+        return { scale, height: layer.box[3] * scale };
+      });
+      const centers = sizes.map((size, index) => index === 0 ? 0 : 1);
+      for (let index = 1; index < sizes.length; index++) centers[index] = centers[index - 1] + (sizes[index - 1].height + sizes[index].height) / 2 + height * .13;
+      const cameraY = mix(centers[startIndex], centers[endIndex], travel);
+      const activeKey = separation > .5 ? focusFrame.layer : null;
+      for (const [index, layer] of layers.entries()) {
+        const distance = index - currentIndex;
+        const depth = 1 - Math.min(Math.abs(distance), 2.5) * .095;
+        const targetScale = sizes[index].scale * depth;
+        const targetX = width * (.5 + Math.sin(index * 1.5) * Math.min(Math.abs(distance), 1) * .065);
+        const targetY = height * .5 + centers[index] - cameraY;
+        const scale = Math.exp(mix(0, Math.log(targetScale), separation));
+        const x = mix(0, targetX - (layer.box[0] + layer.box[2] / 2) * targetScale, separation);
+        const y = mix(0, targetY - (layer.box[1] + layer.box[3] / 2) * targetScale, separation);
+        const opacity = range(0, .24, separation) * (1 - Math.min(Math.abs(distance) * .42, .87));
+        layer.pose = [x, y, scale];
+        layer.opacity = opacity;
+        layer.group.setAttribute('transform', `translate(${x.toFixed(3)} ${y.toFixed(3)}) scale(${scale.toFixed(5)})`);
+        layer.group.style.opacity = String(opacity);
+        layer.group.dataset.pose = layer.pose.map(value => value.toFixed(5)).join(' ');
+        layer.group.dataset.active = String(layer.key === activeKey);
+        layer.group.dataset.depth = depth.toFixed(3);
+      }
+      // Links follow their own source and destination components as those move.
+      links.style.opacity = String(range(.55, 1, separation));
+      for (const relationship of relationships) {
+        const from = layers.find(layer => layer.key === relationship.from);
+        const to = layers.find(layer => layer.key === relationship.to);
+        const [fx, fy, fs] = from.pose, [tx, ty, ts] = to.pose;
+        const downward = to.index > from.index;
+        const x1 = fx + (from.box[0] + from.box[2] / 2) * fs;
+        const y1 = fy + (from.box[1] + from.box[3] * (downward ? 1 : 0)) * fs;
+        const x2 = tx + (to.box[0] + to.box[2] / 2) * ts;
+        const y2 = ty + (to.box[1] + to.box[3] * (downward ? 0 : 1)) * ts;
+        const middle = (y1 + y2) / 2;
+        relationship.line.setAttribute('points', `${x1},${y1} ${x1},${middle} ${x2},${middle} ${x2},${y2}`);
+        const distance = Math.max(Math.abs(from.index - currentIndex), Math.abs(to.index - currentIndex));
+        relationship.line.style.opacity = String(.3 * clamp(2 - distance));
+      }
+      stage.section.dataset.activeLayer = activeKey || '';
     }
+    stage.section.dataset.layout = separation < .001 ? 'overview' : separation > .999 ? 'focused' : 'separating';
+    stage.section.dataset.separation = separation.toFixed(4);
     stage.section.dataset.progress = stage.progress.toFixed(4);
     stage.section.dataset.targetProgress = stage.target.toFixed(4);
+    stage.section.dataset.settled = String(stage.progress === stage.target);
     stage.section.dataset.sceneIndex = String(active);
     stage.section.dataset.sceneId = stage.config.scenes[active].id;
-    stage.section.dataset.focus = String(focusFrame.focus || 'whole');
-    stage.section.dataset.viewIndex = String(useNext ? second : first);
+    stage.section.dataset.focus = focusFrame.layer || 'whole';
+    stage.section.dataset.viewIndex = String(phase > .56 ? second : first);
     stage.section.dataset.camera = serialized;
     stage.section.style.setProperty('--diagram-progress', String(stage.progress));
-    stage.section.style.setProperty('--diagram-caption-opacity', '1');
     stage.viewport.dataset.camera = serialized;
     stage.viewport.dataset.viewBox = serialized;
     stage.viewport.dataset.sceneIndex = String(active);
@@ -170,14 +261,16 @@ export function initDiagramStages(configs) {
     animation = 0;
     const dt = Math.min(.07, (now - previousTime) / 1000);
     previousTime = now;
-    const follow = 1 - Math.exp(-dt * 12);
+    const follow = 1 - Math.exp(-dt * 13);
     let moving = false;
     for (const stage of stages) {
       if (!stage.visible || reduced.matches) { stage.progress = stage.target; continue; }
       const difference = stage.target - stage.progress;
       stage.progress = Math.abs(difference) < .00006 ? stage.target : stage.progress + difference * follow;
+      // Finish on the exact scroll position before stopping the frame loop.
+      if (Math.abs(stage.target - stage.progress) <= .00006) stage.progress = stage.target;
       paint(stage);
-      moving ||= Math.abs(stage.target - stage.progress) > .00006;
+      moving ||= stage.target !== stage.progress;
     }
     if (moving) requestFrame();
   }
@@ -187,6 +280,7 @@ export function initDiagramStages(configs) {
       stage.visible = rect.bottom > 0 && rect.top < innerHeight;
       stage.target = clamp(-rect.top / Math.max(1, rect.height - innerHeight));
       stage.section.dataset.targetProgress = stage.target.toFixed(4);
+      stage.section.dataset.settled = String(stage.progress === stage.target);
       if (!stage.initialized || !stage.visible || reduced.matches) {
         stage.progress = stage.target;
         stage.initialized = true;
@@ -201,7 +295,7 @@ export function initDiagramStages(configs) {
   }
   function checkTextFit() {
     for (const stage of stages) {
-      if (reduced.matches || landscape.matches || stage.failed || stage.overflow || !stage.copy) continue;
+      if (isStatic(stage) || !stage.copy) continue;
       const available = stage.copy.clientHeight;
       if (!available) continue;
       const exceeds = stage.captions.some(caption => {
@@ -211,11 +305,7 @@ export function initDiagramStages(configs) {
         }, 0);
         return height > available + 2;
       });
-      if (exceeds) {
-        stage.overflow = true;
-        configure(stage);
-        stage.initialized = false;
-      }
+      if (exceeds) { stage.overflow = true; configure(stage); stage.initialized = false; }
     }
     update();
   }
@@ -233,14 +323,13 @@ export function initDiagramStages(configs) {
     if (document.hidden) { cancelAnimationFrame(animation); animation = 0; }
     else update();
   }
-
   const ready = Promise.all(stages.map(async stage => {
     try {
       const response = await fetch(`${import.meta.env.BASE_URL}${stage.config.asset}`, { signal: abort.signal });
       if (!response.ok) throw new Error('Figure unavailable.');
       const source = await response.text();
       if (disposed) return;
-      stage.svg = prepareSVG(source, stage.config.key, `${stage.config.title}: the complete source diagram, explored through scrolling.`);
+      stage.svg = prepareSVG(source, stage.config.key, `${stage.config.title}: the complete source diagram, explored through connected components.`);
       stage.viewport.replaceChildren(stage.svg.element);
       stage.viewport.setAttribute('aria-busy', 'false');
       stage.section.dataset.ready = 'true';

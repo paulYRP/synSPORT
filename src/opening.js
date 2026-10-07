@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createThrow } from './judoka.js';
+import { createIdentity } from './identity.js';
 import './opening.css';
 
 const clamp = (value) => Math.max(0, Math.min(1, value));
@@ -73,6 +74,7 @@ export function initOpening({ container, loader, onReady = () => {} }) {
     <svg class="opening-contours" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
     <div class="opening-portrait"><img src="${base}media/judoka.png" width="1024" height="1536" alt="A judoka in dark silhouette" fetchpriority="high" draggable="false"></div>
     <div class="opening-grain" aria-hidden="true"></div>`;
+  const identity = createIdentity(container, requestFrame);
   loader.classList.add('opening-loader');
   loader.setAttribute('aria-label', 'Loading synSPORT');
   loader.innerHTML = `<div class="opening-belt-fallback" aria-hidden="true"><svg viewBox="0 0 240 160"><path d="M25 54C60 22 180 22 215 54L212 76C166 62 76 62 28 76Z"/><path d="M110 63L92 78 71 141 98 149 124 78ZM125 64L142 78 170 135 146 149 115 78Z"/><path d="M96 60L137 54 146 76 105 82Z"/></svg></div>
@@ -142,6 +144,7 @@ export function initOpening({ container, loader, onReady = () => {} }) {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
     }
+    identity.resize();
     requestFrame();
   }
   function render(now) {
@@ -151,19 +154,29 @@ export function initOpening({ container, loader, onReady = () => {} }) {
     lastTime = now;
     const follow = 1 - Math.exp(-dt * 11);
     progress = mix(progress, targetProgress, follow);
+    // Paint the exact destination before stopping, so either scroll direction
+    // produces the same composition when the reader pauses.
+    if (reducedMotion.matches || Math.abs(progress - targetProgress) <= .00008) progress = targetProgress;
     currentX = mix(currentX, pointerX, follow);
     currentY = mix(currentY, pointerY, follow);
     const reduced = reducedMotion.matches;
-    const p = reduced ? 0 : progress;
+    const fullProgress = reduced ? targetProgress : progress;
+    const p = reduced ? 0 : clamp(fullProgress / .54);
     const hasMovement = !!movement && !reduced;
     const reveal = hasMovement ? smooth(.21, .37, p) : 0;
+    const exit = reduced ? 0 : smooth(.54, .64, fullProgress);
     const dark = root.dataset.theme === 'dark';
-    container.style.setProperty('--opening-portrait', String(1 - reveal));
+    container.style.setProperty('--opening-portrait', String(reduced ? .32 : (1 - reveal) * (1 - exit)));
     container.style.setProperty('--opening-scale', String(reduced ? 1 : 1 + .10 * smooth(0, .13, p) - .36 * smooth(.15, .36, p)));
     container.style.setProperty('--opening-progress', String(p));
     container.style.setProperty('--opening-x', String(reduced ? 0 : currentX));
     container.style.setProperty('--opening-y', String(reduced ? 0 : currentY));
-    container.dataset.progress = p.toFixed(3);
+    container.dataset.progress = fullProgress.toFixed(3);
+    container.dataset.targetProgress = targetProgress.toFixed(6);
+    container.dataset.settled = String(progress === targetProgress);
+    container.dataset.filmProgress = p.toFixed(3);
+    container.dataset.identityProgress = identity.update(fullProgress, reduced).toFixed(4);
+    container.dataset.phase = reduced || fullProgress >= .89 ? 'identity' : fullProgress >= .73 ? 'transform' : fullProgress >= .60 ? 'phrase' : p >= .21 ? 'technique' : 'portrait';
     if (renderer) {
       const mobile = container.clientWidth < 700;
       if (!ready && belt) {
@@ -181,14 +194,14 @@ export function initOpening({ container, loader, onReady = () => {} }) {
         camera.lookAt(0, mobile ? .25 : .30, 0);
         if (movement) {
           movement.group.rotation.y = reduced ? 0 : currentX * .012;
-          const state = movement.update(clamp((p - .34) / .60), reveal, dark);
+          const state = movement.update(clamp((p - .34) / .60), reveal * (1 - exit), dark);
           container.dataset.filmFrame = String(state.frame);
           container.dataset.targetFrame = String(state.target);
         }
       }
       renderer.render(scene, camera);
     }
-    if ((!ready && renderer) || Math.abs(progress - targetProgress) > .00008 || Math.abs(currentX - pointerX) > .001 || Math.abs(currentY - pointerY) > .001) requestFrame();
+    if ((!ready && renderer) || progress !== targetProgress || Math.abs(currentX - pointerX) > .001 || Math.abs(currentY - pointerY) > .001) requestFrame();
   }
 
   function pointerMove(event) {
@@ -262,7 +275,12 @@ export function initOpening({ container, loader, onReady = () => {} }) {
   prepare();
 
   return {
-    update(value) { targetProgress = clamp(value); requestFrame(); },
+    update(value) {
+      targetProgress = clamp(value);
+      container.dataset.targetProgress = targetProgress.toFixed(6);
+      container.dataset.settled = String(progress === targetProgress);
+      requestFrame();
+    },
     dispose() {
       disposed = true;
       abort.abort();
@@ -276,6 +294,7 @@ export function initOpening({ container, loader, onReady = () => {} }) {
       reducedMotion.removeEventListener('change', preferenceChange);
       document.removeEventListener('visibilitychange', visibilityChange);
       continueButton.removeEventListener('click', finish);
+      identity.dispose();
       movement?.dispose();
       clearBelt();
       renderer?.dispose();
